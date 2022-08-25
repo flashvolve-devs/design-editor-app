@@ -9,17 +9,16 @@ class CustomRouter {
     this.router = Router();
   }
 
-  public addRoute(controller: any, route: string = controller.route) {
-    this.router.get(route, controller.getAll);
-    // this.router.get(`${route}/:id`, controller.findByPk);
-    // this.router.post(route, controller.create);
-    // this.router.put(`${route}/:id`, controller.update);
-    // this.router.delete(`${route}/:id`, controller.destroy);
-  }
+  // public addRoute(controller: any, route: string = controller.route) {
+  // this.router.get(route, controller.getAll);
+  // this.router.get(`${route}/:id`, controller.findByPk);
+  // this.router.post(route, controller.create);
+  // this.router.put(`${route}/:id`, controller.update);
+  // this.router.delete(`${route}/:id`, controller.destroy);
+  // }
 
-  public getDataByJson(controller: any, route: string = controller.route) {
-    this.router.get(route, controller.getMessage);
-    this.router.post(route, controller.postMessage);
+  public getJson(controller: any, route: string = controller.route) {
+    this.router.post(route, controller.createImage);
   }
 }
 

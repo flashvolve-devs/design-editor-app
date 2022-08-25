@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { ResponseError } from './Base.controller';
-import MessageService from '../services/Message.service';
-import App from '../app';
-
-const app = new App();
+import ImageService from '../services/Image.service';
 
 enum ControllerErrors {
   internal = 'Internal Server Error',
@@ -13,15 +10,15 @@ enum ControllerErrors {
   badRequest = 'Bad request',
 }
 
-class MessageController {
+class ImageController {
   protected errors = ControllerErrors;
   
   private $route: string;
   
-  private service = new MessageService();
+  private service = new ImageService();
   
   constructor(
-    route = '/image',
+    route = '/imagebuilder',
   ) {
     this.$route = route; 
   }
@@ -29,40 +26,19 @@ class MessageController {
   get route() {
     return this.$route;
   }
-  
-  getMessage = (
-    req: Request<{ id: string }>,
-    res: Response<ResponseError | string[]>,
-  ): typeof res => {
-    try {
-      const messageFound = this.service.getMessage(req.body);
-  
-      if (!messageFound) {
-        return res.status(404).json({ error: this.errors.notFound });
-      }
 
-      return res.status(200).json(messageFound);
-    } catch (error) {
-      console.error(error);
-  
-      return res.status(500).json({ error: this.errors.internal });
-    }
-  };
-
-  postMessage = async (
+  createImage = async (
     req: Request<{ id: string }>,
-    res: Response<ResponseError | string[]>,
+    res: Response<ResponseError | object>,
   ): Promise<typeof res> => {
     try {
-      const messageFound = await this.service.postMessage(req.body);
+      const messageFound = this.service.createImage(req.body);
   
       if (!messageFound) {
         return res.status(404).json({ error: this.errors.notFound });
       }
 
-      if (messageFound.errors) return res.status(400).json(messageFound);
-
-      if (messageFound) console.log(app.databaseUpdate());
+      // if (messageFound) console.log(app.databaseUpdate());
 
       return res.status(200).json(messageFound);
     } catch (error) {
@@ -124,4 +100,4 @@ class MessageController {
   // };
 }
   
-export default MessageController;
+export default ImageController;

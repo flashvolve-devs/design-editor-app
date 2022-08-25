@@ -1,6 +1,6 @@
 import { IDesign } from "@layerhub-io/types"
 import React from "react"
-import { DesignType } from "~/interfaces/DesignEditor"
+import { DesignType } from "../interfaces/DesignEditor"
 
 interface IDesignEditorContext {
   scenes: IDesign[]

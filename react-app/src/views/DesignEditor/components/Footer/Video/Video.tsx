@@ -3,10 +3,10 @@ import { Theme } from "baseui/theme"
 import Timeline from "./Timeline"
 import Common from "./Common"
 import { Block } from "baseui/block"
-import PlaySolid from "~/components/Icons/PlaySolid"
+import PlaySolid from "../../../../../components/Icons/PlaySolid"
 import { useTimer } from "@layerhub-io/use-timer"
-import Pause from "~/components/Icons/Pause"
-import useDesignEditorContext from "~/hooks/useDesignEditorContext"
+import Pause from "../../../../../components/Icons/Pause"
+import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   background: $theme.colors.white,

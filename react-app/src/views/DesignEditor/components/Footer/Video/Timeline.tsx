@@ -1,14 +1,14 @@
 import React from "react"
 import { styled, useStyletron } from "baseui"
 import { Theme } from "baseui/theme"
-import Add from "~/components/Icons/Add"
-import { DesignEditorContext } from "~/contexts/DesignEditor"
+import Add from "../../../../../components/Icons/Add"
+import { DesignEditorContext } from "../../../../../contexts/DesignEditor"
 import { nanoid } from "nanoid"
-import { defaultTemplate } from "~/constants/design-editor"
+import { defaultTemplate } from "../../../../../constants/design-editor"
 import { useEditor, useFrame } from "@layerhub-io/react"
 import { Block } from "baseui/block"
 import { useTimer } from "@layerhub-io/use-timer"
-import useDesignEditorContext from "~/hooks/useDesignEditorContext"
+import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 import { IDesign } from "@layerhub-io/types"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({

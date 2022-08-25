@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",  
+    "rootDir": ".",
+    "target": "es2019",
+    "module": "commonjs",
+    "typeRoots": [
+      "src/@types",
+      "./node_modules/@types"
+    ],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "baseUrl": ".",
+  "exclude": ["node_modules", "src/tests/"]
+}

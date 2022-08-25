@@ -2,12 +2,12 @@ import React from "react"
 import { useEditor } from "@layerhub-io/react"
 import { useStyletron } from "baseui"
 import { Block } from "baseui/block"
-import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
-import Scrollable from "~/components/Scrollable"
-import { pixabayImages } from "~/constants/mock-data"
+import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
+import Scrollable from "../../../../../components/Scrollable"
+import { pixabayImages } from "../../../../../constants/mock-data"
 import { useSelector } from "react-redux"
-import { selectPixabayResources } from "~/store/slices/resources/selectors"
-import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
+import { selectPixabayResources } from "../../../../../store/slices/resources/selectors"
+import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 
 export default function () {
   const editor = useEditor()

@@ -1,31 +1,31 @@
 import React from "react"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
-// import getSelectionType from "~/utils/get-selection-type"
+// import getSelectionType from "./utils/get-selection-type"
 import { Input } from "baseui/input"
 import { Block } from "baseui/block"
 import { ChevronDown } from "baseui/icon"
 import Common from "./Common"
-import TextColor from "~/components/Icons/TextColor"
-import Bold from "~/components/Icons/Bold"
-import Italic from "~/components/Icons/Italic"
-import Underline from "~/components/Icons/Underline"
-import TextAlignCenter from "~/components/Icons/TextAlignCenter"
+import TextColor from "../../../../components/Icons/TextColor"
+import Bold from "../../../../components/Icons/Bold"
+import Italic from "../../../../components/Icons/Italic"
+import Underline from "../../../../components/Icons/Underline"
+import TextAlignCenter from "../../../../components/Icons/TextAlignCenter"
 
 import { Button, SIZE, KIND } from "baseui/button"
 import { StatefulTooltip, PLACEMENT } from "baseui/tooltip"
-import LetterCase from "~/components/Icons/LetterCase"
-import Spacing from "~/components/Icons/Spacing"
+import LetterCase from "../../../../components/Icons/LetterCase"
+import Spacing from "../../../../components/Icons/Spacing"
 import { StatefulPopover } from "baseui/popover"
-import TextAlignJustify from "~/components/Icons/TextAlignJustify"
-import TextAlignLeft from "~/components/Icons/TextAlignLeft"
-import TextAlignRight from "~/components/Icons/TextAlignRight"
+import TextAlignJustify from "../../../../components/Icons/TextAlignJustify"
+import TextAlignLeft from "../../../../components/Icons/TextAlignLeft"
+import TextAlignRight from "../../../../components/Icons/TextAlignRight"
 import { Slider } from "baseui/slider"
-import useAppContext from "~/hooks/useAppContext"
-import { FONT_SIZES, SAMPLE_FONTS } from "~/constants/editor"
-import getSelectionType from "~/utils/get-selection-type"
+import useAppContext from "../../../../hooks/useAppContext"
+import { FONT_SIZES, SAMPLE_FONTS } from "../../../../constants/editor"
+// import getSelectionType from "./utils/get-selection-type"
 import { IStaticText } from "@layerhub-io/types"
 import { getTextProperties } from "../../utils/text"
-import { loadFonts } from "~/utils/fonts"
+import { loadFonts } from "../../../../utils/fonts"
 import Scrollbar from "@layerhub-io/react-custom-scrollbar"
 interface TextState {
   color: string
@@ -249,7 +249,7 @@ export default function () {
 
           <StatefulTooltip placement={PLACEMENT.bottom} showArrow={true} accessibilityType={"tooltip"} content="Bold">
             <Button
-              $style={{ ...(!state.bold && { color: "rgb(169,169,169)" }) }}
+              style={{ ...(!state.bold && { color: "rgb(169,169,169)" }) }}
               disabled={!state.styleOptions.hasBold}
               onClick={makeBold}
               size={SIZE.mini}
@@ -261,7 +261,7 @@ export default function () {
 
           <StatefulTooltip placement={PLACEMENT.bottom} showArrow={true} accessibilityType={"tooltip"} content="Italic">
             <Button
-              $style={{ ...(!state.italic && { color: "rgb(169,169,169)" }) }}
+              style={{ ...(!state.italic && { color: "rgb(169,169,169)" }) }}
               disabled={!state.styleOptions.hasItalic}
               onClick={makeItalic}
               size={SIZE.mini}
@@ -278,7 +278,7 @@ export default function () {
             content="Underline"
           >
             <Button
-              $style={{ ...(!state.underline && { color: "rgb(169,169,169)" }) }}
+              style={{ ...(!state.underline && { color: "rgb(169,169,169)" }) }}
               onClick={makeUnderline}
               size={SIZE.mini}
               kind={KIND.tertiary}

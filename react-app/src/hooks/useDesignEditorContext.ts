@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { DesignEditorContext } from "~/contexts/DesignEditor"
+import { DesignEditorContext } from "../contexts/DesignEditor"
 
 function useDesignEditorContext() {
   const {

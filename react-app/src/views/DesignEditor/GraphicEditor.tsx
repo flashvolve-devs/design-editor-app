@@ -6,10 +6,10 @@ import Panels from "./components/Panels"
 import Canvas from "./components/Canvas"
 import Footer from "./components/Footer"
 import Toolbox from "./components/Toolbox"
-import { DesignType } from "~/interfaces/DesignEditor"
-import useEditorType from "~/hooks/useEditorType"
+import { DesignType } from "../../interfaces/DesignEditor"
+import useEditorType from "../../hooks/useEditorType"
 import SelectEditor from "./SelectEditor"
-import useDesignEditorContext from "~/hooks/useDesignEditorContext"
+import useDesignEditorContext from "../../hooks/useDesignEditorContext"
 import Preview from "./components/Preview"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({

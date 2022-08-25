@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import DesignEditor from "~/views/DesignEditor"
-import Dashboard from "~/views/Dashboard"
+import DesignEditor from "./views/DesignEditor"
+import Dashboard from "./views/Dashboard"
 
 function Router() {
   return (

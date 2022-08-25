@@ -1,15 +1,15 @@
 import React from "react"
 import { Block } from "baseui/block"
-import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
-import Scrollable from "~/components/Scrollable"
+import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
+import Scrollable from "../../../../../components/Scrollable"
 import { Button, SIZE } from "baseui/button"
-import DropZone from "~/components/Dropzone"
-import { useAppDispatch } from "~/store/store"
-import { setUploading, uploadFile } from "~/store/slices/uploads/actions"
+import DropZone from "../../../../../components/Dropzone"
+import { useAppDispatch } from "../../../../../store/store"
+import { setUploading, uploadFile } from "../../../../../store/slices/uploads/actions"
 import { useSelector } from "react-redux"
-import { selectUploading, selectUploads } from "~/store/slices/uploads/selectors"
+import { selectUploading, selectUploads } from "../../../../../store/slices/uploads/selectors"
 import { useEditor } from "@layerhub-io/react"
-import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
+import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 
 export default function () {
   const [currentFile, setCurrentFile] = React.useState<any>(null)

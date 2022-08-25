@@ -1,15 +1,15 @@
 import { Button, SIZE } from "baseui/button"
-import { textComponents } from "~/constants/editor"
+import { textComponents } from "../../../../../constants/editor"
 import { useStyletron } from "styletron-react"
 import { useEditor } from "@layerhub-io/react"
-import { FontItem } from "~/interfaces/common"
-import { loadFonts } from "~/utils/fonts"
+import { FontItem } from "../../../../../interfaces/common"
+import { loadFonts } from "../../../../../utils/fonts"
 import { IStaticText } from "@layerhub-io/types"
 import { nanoid } from "nanoid"
 import { Block } from "baseui/block"
-import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
-import Scrollable from "~/components/Scrollable"
-import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
+import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
+import Scrollable from "../../../../../components/Scrollable"
+import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 
 export default function () {
   const editor = useEditor()

@@ -1,11 +1,11 @@
 import React from "react"
 import { Block } from "baseui/block"
 import { Button } from "baseui/button"
-import { DesignType } from "~/interfaces/DesignEditor"
-import useDesignEditorContext from "~/hooks/useDesignEditorContext"
-import Video from "~/components/Icons/Video"
-import Images from "~/components/Icons/Images"
-import Presentation from "~/components/Icons/Presentation"
+import { DesignType } from "../../interfaces/DesignEditor"
+import useDesignEditorContext from "../../hooks/useDesignEditorContext"
+import Video from "../../components/Icons/Video"
+import Images from "../../components/Icons/Images"
+import Presentation from "../../components/Icons/Presentation"
 
 export default function () {
   const [selectedEditor, setSelectedEditor] = React.useState<DesignType>("GRAPHIC")
@@ -85,7 +85,7 @@ export default function () {
           </Block>
         </Block>
         <Block $style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}>
-          <Button $style={{ width: "180px" }} onClick={() => setEditorType(selectedEditor)}>
+          <Button style={{ width: "180px" }} onClick={() => setEditorType(selectedEditor)}>
             Continue
           </Button>
         </Block>

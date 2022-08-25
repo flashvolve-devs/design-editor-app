@@ -7,13 +7,13 @@ import { Input } from "baseui/input"
 import { useEditor, useFrame } from "@layerhub-io/react"
 import { Modal, ROLE } from "baseui/modal"
 import { Block } from "baseui/block"
-import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
-import Scrollable from "~/components/Scrollable"
-import { sampleFrames } from "~/constants/editor"
+import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
+import Scrollable from "../../../../../components/Scrollable"
+import { sampleFrames } from "../../../../../constants/editor"
 import Scrollbar from "@layerhub-io/react-custom-scrollbar"
-import SwapHorizontal from "~/components/Icons/SwapHorizontal"
+import SwapHorizontal from "../../../../../components/Icons/SwapHorizontal"
 import { Tabs, Tab } from "baseui/tabs"
-import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
+import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 
 const colors = ["#ffffff", "#9B9B9B", "#4A4A4A", "#000000", "#A70C2C", "#DA9A15", "#F8E71D", "#47821A", "#4990E2"]
 
@@ -344,7 +344,7 @@ function ResizeTemplate() {
           </Tabs>
         </Block>
         <Block $style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingBottom: "2rem" }}>
-          <Button disabled={!isEnabled} onClick={applyResize} $style={{ width: "190px" }}>
+          <Button disabled={!isEnabled} onClick={applyResize} style={{ width: "190px" }}>
             Resize template
           </Button>
         </Block>

@@ -1,15 +1,15 @@
 import React from "react"
 import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
-import { loadFonts } from "~/utils/fonts"
-import Scrollable from "~/components/Scrollable"
-import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
+import { loadFonts } from "../../../../../utils/fonts"
+import Scrollable from "../../../../../components/Scrollable"
+import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import { useStyletron } from "baseui"
-import { SAMPLE_TEMPLATES } from "~/constants/editor"
-import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
-import useDesignEditorContext from "~/hooks/useDesignEditorContext"
-import useEditorType from "~/hooks/useEditorType"
-import { loadVideoEditorAssets } from "~/utils/video"
+import { SAMPLE_TEMPLATES } from "../../../../../constants/editor"
+import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
+import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
+import useEditorType from "../../../../../hooks/useEditorType"
+import { loadVideoEditorAssets } from "../../../../../utils/video"
 
 export default function () {
   const editor = useEditor()

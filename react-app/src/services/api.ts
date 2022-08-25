@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios"
-import { Resource } from "~/interfaces/editor"
+import { Resource } from "../interfaces/editor"
 
 type IElement = any
 type IFontFamily = any

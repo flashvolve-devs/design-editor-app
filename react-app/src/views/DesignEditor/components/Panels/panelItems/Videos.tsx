@@ -1,12 +1,12 @@
 import React from "react"
 import { useStyletron } from "baseui"
 import { Block } from "baseui/block"
-import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
-import Scrollable from "~/components/Scrollable"
+import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
+import Scrollable from "../../../../../components/Scrollable"
 import { useEditor } from "@layerhub-io/react"
-import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
-import { getPixabayVideos } from "~/services/pixabay"
-import { getPexelsVideos } from "~/services/pexels"
+import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
+import { getPixabayVideos } from "../../../../../services/pixabay"
+import { getPexelsVideos } from "../../../../../services/pexels"
 
 const loadVideoResource = (videoSrc: string): Promise<HTMLVideoElement> => {
   return new Promise(function (resolve, reject) {

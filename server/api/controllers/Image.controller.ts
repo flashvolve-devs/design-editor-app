@@ -38,8 +38,6 @@ class ImageController {
         return res.status(404).json({ error: this.errors.notFound });
       }
 
-      // if (messageFound) console.log(app.databaseUpdate());
-
       return res.status(200).json(messageFound);
     } catch (error) {
       console.error(error);

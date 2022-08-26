@@ -1,11 +1,3 @@
-/* eslint-disable no-tabs */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface Message {
-  text: {
-    body: string
-  }
-}
-
 class ImageService {
   private _jsonData: object;
 
@@ -15,7 +7,7 @@ class ImageService {
   }
 
   public createImage(obj: any): object {
-    const imageJSONData = obj.value.messages;
+    this._jsonData = obj;
 
     return this._jsonData;
   }

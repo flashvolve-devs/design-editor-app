@@ -1,23 +1,18 @@
 /* eslint-disable max-len */
 import App from './app';
 
-import MessageController from './controllers/Message.controller';
-import UserController from './controllers/User.controller';
+import ImageController from './controllers/Image.controller';
 
 import CustomRouter from './routes/Router';
 
 const server = new App();
 
-const messageController = new MessageController();
-const userController = new UserController();
+const imageController = new ImageController();
 
-const messageRouter = new CustomRouter();
-const userRouter = new CustomRouter();
+const imageRouter = new CustomRouter();
 
-messageRouter.getDataByJson(messageController);
-userRouter.addRoute(userController);
+imageRouter.getJson(imageController);
 
-server.addRouter(messageRouter.router);
-server.addRouter(userRouter.router);
+server.addRouter(imageRouter.router);
 
 export default server;

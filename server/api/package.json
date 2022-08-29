@@ -10,9 +10,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "start": "./scripts/tsc_eval.sh && ts-node-dev api/index.ts",
+    "start": "./scripts/tsc_eval.sh && ts-node-dev index.ts",
     "build": "./scripts/tsc_eval.sh",
-    "dev": "ts-node-dev api/index.ts"
+    "dev": "ts-node-dev index.ts"
   },
   "keywords": [
     "node.js",

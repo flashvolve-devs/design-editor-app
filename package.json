@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "node-base64-image": "^2.0.4"
+  }
+}

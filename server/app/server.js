@@ -1,8 +1,8 @@
-const encode = require('node-base64-image');
+const fs = require("fs");
 const express = require("express");
 const body_parser = require("body-parser");
 const app = express().use(body_parser.json());
-const { createCanvas, loadImage } = require('canvas');
+const { createCanvas, Image } = require('canvas');
 const initialFrame = require('./functions/initialFrame.js');
 const loadImageUrl = require('./functions/loadImage.js');
 
@@ -15,19 +15,19 @@ app.post("/image", async (req, res) => {
   const canvasWidth = response.frame.width;
   const canvasHeight = response.frame.height;
 
-  const canvas = createCanvas(canvasWidth, canvasHeight);
+  const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
   const ctx = canvas.getContext('2d');
 
-  const contentImagePerso = response.content[0] == undefined ? response.scene.layers : response.content[0];
+  const contentImage = response.content[0] == undefined ? response.scene.layers : response.content[0];
 
-  console.log(contentImagePerso);
+  // console.log(contentImage);
   
-  for(let i = 0; i < contentImagePerso.length; i++){
-    //console.log(contentImagePerso[i]);
-    const nameMode = contentImagePerso[i].name;
+  for(let i = 0; i < contentImage.length; i++){
+    //console.log(contentImage[i]);
+    const nameMode = contentImage[i].name;
     switch (nameMode) {
       case 'Initial Frame':
-        await initialFrame(ctx, contentImagePerso[i]);
+        await initialFrame(ctx, contentImage[i]);
         break;
 
       case 'StaticPath':
@@ -37,27 +37,24 @@ app.post("/image", async (req, res) => {
         break;
 
       case 'StaticImage':
-        await loadImageUrl(ctx, contentImagePerso[i], canvasWidth, canvasHeight);
+        await loadImageUrl(ctx, contentImage[i], canvasWidth, canvasHeight);
         break;
 
       default:
-        console.log(nameMode);
+        // console.log(nameMode);
         break;
     }
   }
   
-  const url = canvas.toDataURL();
-  const options = {
-    string: true,
-    headers: {
-      "User-Agent": "my-app"
-    }
-  };
-  
-  // writing to a sub-directory
-  // after creating a directory called 'photos'
-  const image = await encode(url, options);
-  
-  res.send(image);
-});
+  const base64 = canvas.toDataURL();
+  const img = new Image();
+  img.onload = () => ctx.drawImage(img, 0, 0)
+  img.onerror = err => { throw err }
+  img.src = base64;
 
+  fs.writeFileSync("./images/new-image.jpeg", canvas.toBuffer());
+
+  // res.send(base64);
+
+  res.sendFile("./images/new-image.jpeg", { root: __dirname });
+});

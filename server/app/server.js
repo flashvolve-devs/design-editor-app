@@ -1,10 +1,13 @@
 const fs = require("fs");
+const axios = require('axios').default;
 const express = require("express");
 const body_parser = require("body-parser");
 const app = express().use(body_parser.json());
 const { createCanvas, Image } = require('canvas');
 const initialFrame = require('./functions/initialFrame.js');
 const loadImageUrl = require('./functions/loadImage.js');
+const loadText = require('./functions/loadText.js');
+
 
 app.listen(process.env.PORT || 3001, () => console.log("Server running here 👉 http://localhost: 3001"));
 
@@ -18,26 +21,27 @@ app.post("/image", async (req, res) => {
   const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
   const ctx = canvas.getContext('2d');
 
-  const contentImage = response.content[0] == undefined ? response.scene.layers : response.content[0];
+  const contentJSON = response.content[0] == undefined ? response.scene.layers : response.content[0];
 
-  // console.log(contentImage);
+  // console.log(contentJSON);
   
-  for(let i = 0; i < contentImage.length; i++){
-    //console.log(contentImage[i]);
-    const nameMode = contentImage[i].name;
+  for(let i = 0; i < contentJSON.length; i++){
+    //console.log(contentJSON[i]);
+    const nameMode = contentJSON[i].name;
     switch (nameMode) {
       case 'Initial Frame':
-        await initialFrame(ctx, contentImage[i]);
+        await initialFrame(ctx, contentJSON[i]);
         break;
 
       case 'StaticPath':
         break;
 
       case 'StaticText':
+        await loadText(ctx, contentJSON[i]);
         break;
 
       case 'StaticImage':
-        await loadImageUrl(ctx, contentImage[i], canvasWidth, canvasHeight);
+        await loadImageUrl(ctx, contentJSON[i], canvasWidth, canvasHeight);
         break;
 
       default:
@@ -57,4 +61,26 @@ app.post("/image", async (req, res) => {
   // res.send(base64);
 
   res.sendFile("./images/new-image.jpeg", { root: __dirname });
+
+  const FormData = require('form-data');
+  const fs = require('fs');
+  const data = new FormData();
+  data.append('file', fs.createReadStream('04-zUnrQx/pessoa.jpg'));
+
+  const config = {
+    method: 'post',
+    url: 'https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=s12151.jpeg',
+    headers: {
+      ...data.getHeaders()
+    },
+    data: data
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 });

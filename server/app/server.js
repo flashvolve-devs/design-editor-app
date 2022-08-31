@@ -8,7 +8,6 @@ const initialFrame = require('./functions/initialFrame.js');
 const loadImageUrl = require('./functions/loadImage.js');
 const loadText = require('./functions/loadText.js');
 
-
 app.listen(process.env.PORT || 3001, () => console.log("Server running here 👉 http://localhost: 3001"));
 
 app.post("/image", async (req, res) => {
@@ -62,25 +61,24 @@ app.post("/image", async (req, res) => {
 
   res.sendFile("./images/new-image.jpeg", { root: __dirname });
 
-  const FormData = require('form-data');
-  const fs = require('fs');
-  const data = new FormData();
-  data.append('file', fs.createReadStream('04-zUnrQx/pessoa.jpg'));
+  // const FormData = require('form-data');
+  // const data = new FormData();
+  // data.append('file', fs.createReadStream('04-zUnrQx/pessoa.jpg'));
 
-  const config = {
-    method: 'post',
-    url: 'https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=s12151.jpeg',
-    headers: {
-      ...data.getHeaders()
-    },
-    data: data
-  };
+  // const config = {
+  //   method: 'post',
+  //   url: 'https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=s12151.jpeg',
+  //   headers: {
+  //     ...data.getHeaders()
+  //   },
+  //   data: data
+  // };
 
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  // axios(config)
+  //   .then(function (response) {
+  //     console.log(JSON.stringify(response.data));
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
 });

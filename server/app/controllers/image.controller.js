@@ -1,22 +1,22 @@
-///////////////////////
 const fs = require('fs');
-const { createCanvas, Image } = require('canvas');
+const { createCanvas, Image, registerFont } = require('canvas');
 const initialFrame = require('../functions/initialFrame');
 const loadImageUrl = require('../functions/loadImage.js');
 const loadText = require('../functions/loadText.js');
 
 module.exports = class MainController {
 
-    static async home(req, res) {
+    static async home(_req, res) {
         res.send('=== Design Editor ===')
     }
     
     static async createImage(req, res) {
+        registerFont('ComicSansMS3.ttf', { family: 'Comic Sans MS' })
         const response = req.body;
         const canvasWidth = response.frame.width;
         const canvasHeight = response.frame.height;
 
-        const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
+        const canvas = createCanvas(canvasWidth, canvasHeight, 'svg');
         const ctx = canvas.getContext('2d');
 
         const contentJSON = response.content[0] == undefined ? response.scene.layers : response.content[0];
@@ -54,31 +54,10 @@ module.exports = class MainController {
         img.onerror = err => { throw err }
         img.src = base64;
 
-        fs.writeFileSync("./images/new-image.jpeg", canvas.toBuffer());
+        fs.writeFileSync("D:/Flashvolve/design-editor-app/server/app/assets/images/new-image.svg", canvas.toBuffer());
 
         // res.send(base64);
 
-        res.sendFile("./images/new-image.jpeg", { root: __dirname });
-
-        const FormData = require('form-data');
-        const data = new FormData();
-        data.append('file', fs.createReadStream('04-zUnrQx/pessoa.jpg'));
-
-        const config = {
-            method: 'post',
-            url: 'https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=s12151.jpeg',
-            headers: {
-                ...data.getHeaders()
-            },
-            data: data
-        };
-
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        res.sendFile("D:/Flashvolve/design-editor-app/server/app/assets/images/new-image.svg");
     }
 }

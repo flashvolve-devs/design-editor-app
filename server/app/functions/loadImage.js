@@ -1,5 +1,4 @@
-const { createCanvas, loadImage } = require('canvas');
-
+const { loadImage } = require('canvas');
 const loadImageUrl = async (ctx, content, canvasWidth, canvasHeight) => {
   
   //console.log(content);

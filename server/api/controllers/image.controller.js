@@ -42,13 +42,12 @@ module.exports = class MainController {
                     break;
 
                  case 'Group':
-                    for (let j = 0; j < contentJSON[i].objects.length; j++) {
+                     for (let j = 0; j < contentJSON[i].objects.length; j++) {
                         await loadText(ctx, contentJSON[i].objects[j]);
                     }
                     break;
 
                 default:
-                    // console.log(nameMode);
                     break;
             }
         }
@@ -60,16 +59,13 @@ module.exports = class MainController {
         img.src = base64;
 
         fs.writeFileSync(path.join(__dirname, '../assets/images/new-image.jpeg'), canvas.toBuffer());
-        // res.send(base64);
 
         sendToCloud();
 
-        // const IdInCloud = ((await sendToCloud()).id).split('/', 2);
+        const IdInCloud = ((await sendToCloud()).id).split('/', 2);
 
-        // res.send(`https://storage.googleapis.com/${IdInCloud[0]}/${IdInCloud[1]}`);
+        res.send(`https://storage.googleapis.com/${IdInCloud[0]}/${IdInCloud[1]}`);
 
-        res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
-
-        // res.sendFile("D:/Flashvolve/design-editor-app/server/app/assets/images/new-image.jpeg");
+        // res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
     }
 }

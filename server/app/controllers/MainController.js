@@ -3,13 +3,14 @@ const { createCanvas, Image, registerFont } = require('canvas');
 const initialFrame = require('../functions/initialFrame');
 const loadImageUrl = require('../functions/loadImage.js');
 const loadText = require('../functions/loadText.js');
+const path = require('path')
 
 module.exports = class MainController {
 
     static async home(_req, res) {
         res.send('=== Design Editor ===')
     }
-    
+
     static async createImage(req, res) {
         registerFont('ComicSansMS3.ttf', { family: 'Comic Sans MS' })
         const response = req.body;
@@ -18,6 +19,10 @@ module.exports = class MainController {
 
         const canvas = createCanvas(canvasWidth, canvasHeight, 'svg');
         const ctx = canvas.getContext('2d');
+
+        ctx.font = '30px Impact'
+        ctx.rotate(0.1)
+        ctx.fillText('Awesome!', 50, 100)
 
         const contentJSON = response.content[0] == undefined ? response.scene.layers : response.content[0];
 
@@ -54,10 +59,10 @@ module.exports = class MainController {
         img.onerror = err => { throw err }
         img.src = base64;
 
-        fs.writeFileSync("D:/Flashvolve/design-editor-app/server/app/assets/images/new-image.svg", canvas.toBuffer());
+        fs.writeFileSync("./images/new-image.jpeg", canvas.toBuffer());
 
         // res.send(base64);
 
-        res.sendFile("D:/Flashvolve/design-editor-app/server/app/assets/images/new-image.svg");
+        res.sendFile(path.join(__dirname, '../images/new-image.jpeg'));
     }
 }

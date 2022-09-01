@@ -1,10 +1,11 @@
 const fs = require('fs');
+const path = require('path');
 const axios = require('axios').default;
 
 const sendToCloud = () => {
     const FormData = require('form-data');
     const data = new FormData();
-    data.append('file', fs.createReadStream('D:/Flashvolve/design-editor-app/server/app/assets/images/new-image.svg'));
+    data.append('file', fs.createReadStream(path.join(__dirname, '../assets/images/new-image.jpeg')));
 
     const config = {
         method: 'post',

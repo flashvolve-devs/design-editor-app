@@ -7,20 +7,21 @@ const loadText = async (ctx, content) => {
   //   console.log('Updated!');
   // });
   
-  //console.log(content);
+  console.log(content);
+  
   // registerFont(`${content.fontFamily}.ttf`, { family: content.fontFamily });
   // registerFont('comicsans.ttf', { family: 'Comic Sans' })
 
-  // ctx.font = `${content.fontSize}px ${content.fontFamily}`;
-  ctx.font = '12px Comic Sans MS';
-  // ctx.font = '22px Helvetica'
-  // console.log(content.text);
-  // console.log(content.weight);
-  // console.log(content.heigth);
-
-  // ctx.fillText(`${content.text}(`, content.weight, content.heigth);
-  ctx.fillText('Hello World 2', 50, 80);
-
+  // ctx.font = '80px Comic Sans';
+  ctx.font = `${content.fontSize}px Comic Sans`;
+  ctx.fillStyle = content.fill
+  console.log(content.text);
+  console.log(content.weight);
+  console.log(content.heigth);
+  
+  // ctx.fillText('Hello World 2', 50, 80); // (string text, position x, position y)
+  ctx.textAlign = content.textAlign;
+  ctx.fillText(`${content.text}`, content.left, content.top);
 };
 
 module.exports = loadText;

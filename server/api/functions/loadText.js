@@ -1,3 +1,4 @@
+const canvasTxt = require('canvas-txt').default
 // const fs = require("fs");
 
 const loadText = async (ctx, content) => {
@@ -6,15 +7,16 @@ const loadText = async (ctx, content) => {
   //   if (err) throw err;
   //   console.log('Updated!');
   // });
-
-  ctx.font = `${content.fontSize}px Sans`;
+  const txt = content.text;
 
   ctx.fillStyle = content.fill;
-  
-  ctx.textAlign = content.textAlign;
-  ctx.fillText(`${content.text}`, content.left * 2, content.top);
-  
-  // ctx.fillText('Hello World 2', 50, 80); // (string text, position x, position y)
+
+  canvasTxt.font = 'Sans';
+  canvasTxt.fontSize = content.fontSize;
+  canvasTxt.align = content.textAlign;
+  // canvasTxt.lineHeight = content.lineHeight;
+  canvasTxt.justify = false;
+  canvasTxt.drawText(ctx, txt, content.left, content.top, content.width, content.height); //drawText(ctx, text, x, y, width, height)
 };
 
 module.exports = loadText;

@@ -1,11 +1,11 @@
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-    filename: function (req, file, callback) {
-        let fileName = Date.now() + '-' + file.originalname
+    filename: function (_req, file, callback) {
+        let fileName = file.originalname
         callback(null, fileName)
     },
-    destination: function (req, file, callback) {
+    destination: function (_req, _file, callback) {
         let pathFolder = './assets/fonts'
         callback(null, pathFolder)
     }

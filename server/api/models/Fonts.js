@@ -1,5 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb')
-const dbconnect = require('../db/dbconnect')
+const dbconnect = require('../../database/dbconnect')
 
 class Font {
     constructor(name, url) {

@@ -1,31 +1,26 @@
-const { createCanvas, Image, registerFont } = require('canvas');
-const sendToCloud = require('../services/saveInCloud.service.js');
-const initialFrame = require('../functions/initialFrame');
-const loadImageUrl = require('../functions/loadImage.js');
-const loadText = require('../functions/loadText.js');
-const upload = require('../functions/configMulter');
-const Font = require('../models/Fonts');
-const { ObjectId } = require('mongodb');
-const multer = require('multer');
-const path = require('path');
 const fs = require('fs');
-const { request } = require('http');
+const path = require('path');
+const sendToCloud = require('../middlewares/saveInCloud.service.js');
+const initialFrame = require('../helpers/initialFrame');
+const loadImageUrl = require('../helpers/loadImage.js');
+const loadText = require('../helpers/loadText.js');
+const { createCanvas, Image } = require('canvas');
+// const Font = require('../models/Fonts');
+// const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 
-    static async home(req, res) {
+    static async home(_req, res) {
         res.send('=== Design Editor ===')
     }
 
-    static async uploadFonts(req, res, next) {
+    static async uploadFonts(req, res, _next) {
         console.log(req.file, req.body)
         res.send('font upload')
     }
 
     static async createImage(req, res) {
-        // registerFont('ComicSansMS3.ttf', { family: 'Comic Sans MS' })
         const response = req.body;
-        console.log(response)
         const canvasWidth = response.frame.width;
         const canvasHeight = response.frame.height;
 
@@ -54,8 +49,8 @@ module.exports = class MainController {
                     await loadImageUrl(ctx, contentJSON[i]);
                     break;
 
-                case 'Group':
-                    for (let j = 0; j < contentJSON[i].objects.length; j++) {
+                 case 'Group':
+                     for (let j = 0; j < contentJSON[i].objects.length; j++) {
                         await loadText(ctx, contentJSON[i].objects[j]);
                     }
                     break;
@@ -71,6 +66,7 @@ module.exports = class MainController {
         img.onerror = err => { throw err };
         img.src = base64;
 
+        /* Saving the image to the local file system. */
         fs.writeFileSync(path.join(__dirname, '../assets/images/new-image.jpeg'), canvas.toBuffer());
 
         sendToCloud();
@@ -80,6 +76,5 @@ module.exports = class MainController {
         res.send(`https://storage.googleapis.com/${IdInCloud[0]}/${IdInCloud[1]}`);
 
         //res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
-
     }
 }

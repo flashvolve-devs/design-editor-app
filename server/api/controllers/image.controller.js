@@ -3,23 +3,33 @@ const sendToCloud = require('../services/saveInCloud.service.js');
 const initialFrame = require('../functions/initialFrame');
 const loadImageUrl = require('../functions/loadImage.js');
 const loadText = require('../functions/loadText.js');
-const dbconnect = require('../db/dbconnect')//atlas cluster
-const { ObjectId } = require('mongodb')
-
-const path = require('path')
+const upload = require('../functions/configMulter');
+const Font = require('../models/Fonts');
+const { ObjectId } = require('mongodb');
+const multer = require('multer');
+const path = require('path');
 const fs = require('fs');
+const { request } = require('http');
 
 module.exports = class MainController {
 
-    static async home(_req, res) {
+    static async home(req, res) {
         res.send('=== Design Editor ===')
+    }
+
+    static async uploadFonts(req, res, next) {
+        console.log(req.file, req.body)
+        res.send('font upload')
     }
 
     static async createImage(req, res) {
         // registerFont('ComicSansMS3.ttf', { family: 'Comic Sans MS' })
         const response = req.body;
+        console.log(response)
         const canvasWidth = response.frame.width;
         const canvasHeight = response.frame.height;
+
+        //const font = new Font()
 
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
         const ctx = canvas.getContext('2d');

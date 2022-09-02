@@ -14,7 +14,6 @@ function generateRandomString(num){
 }
 
 const sendToCloud = async () => {
-
     const FormData = require('form-data');
     const data = new FormData();
     data.append('file', fs.createReadStream(path.join(__dirname, '../assets/images/new-image.jpeg')));
@@ -28,12 +27,13 @@ const sendToCloud = async () => {
         data: data
     };
 
-    try {
-        const response = await axios(config);
-        return await await response.data;
-    } catch (error) {
-        console.log(error);
-    }
+    return axios(config)
+        .then(async function (response) {
+            return await response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 module.exports = sendToCloud;

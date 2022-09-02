@@ -1,21 +1,30 @@
 const fs = require('fs');
 const path = require('path');
+const sendToCloud = require('../middlewares/saveInCloud.service.js');
+const initialFrame = require('../helpers/initialFrame');
+const loadImageUrl = require('../helpers/loadImage.js');
+const loadText = require('../helpers/loadText.js');
 const { createCanvas, Image } = require('canvas');
-const initialFrame = require('../functions/initialFrame');
-const loadImageUrl = require('../functions/loadImage.js');
-const loadText = require('../functions/loadText.js');
-const sendToCloud = require('../services/saveInCloud.service.js');
+// const Font = require('../models/Fonts');
+// const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 
     static async home(_req, res) {
         res.send('=== Design Editor ===')
     }
-    
+
+    static async uploadFonts(req, res, _next) {
+        console.log(req.file, req.body)
+        res.send('font upload')
+    }
+
     static async createImage(req, res) {
         const response = req.body;
         const canvasWidth = response.frame.width;
         const canvasHeight = response.frame.height;
+
+        //const font = new Font()
 
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
         const ctx = canvas.getContext('2d');
@@ -66,6 +75,6 @@ module.exports = class MainController {
 
         res.send(`https://storage.googleapis.com/${IdInCloud[0]}/${IdInCloud[1]}`);
 
-        // res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
+        //res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
     }
 }

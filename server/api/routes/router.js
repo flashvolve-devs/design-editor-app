@@ -1,10 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const MainController = require('../controllers/image.controller');
+const upload = require('../middlewares/configMulter');
+const express = require('express');
+const router = express.Router();
 
-const MainController = require('../controllers/image.controller')
+router.get('/', MainController.home);
+router.post('/image', MainController.createImage);
+router.post('/fonts', upload.single('file'), MainController.uploadFonts);
 
-router.get('/', MainController.home)
-router.post('/image' , MainController.createImage)
-
-
-module.exports = router
+module.exports = router;

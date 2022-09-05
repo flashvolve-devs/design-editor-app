@@ -4,7 +4,7 @@ const sendToCloud = require('../middlewares/saveInCloud.service.js');
 const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
-const { createCanvas, Image } = require('canvas');
+const { createCanvas, Image, registerFont } = require('canvas');
 // const Font = require('../models/Fonts');
 // const { ObjectId } = require('mongodb');
 
@@ -26,6 +26,7 @@ module.exports = class MainController {
 
         //const font = new Font()
 
+        registerFont(path.join(__dirname, '../assets/fonts/ComicSansMS3.ttf'), { family: 'Comic Sans MS' })
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
         const ctx = canvas.getContext('2d');
 

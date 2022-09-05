@@ -5,7 +5,7 @@ const canvasTxt = require('canvas-txt').default
 
     ctx.fillStyle = content.fill;
 
-    canvasTxt.font = 'Sans';
+    canvasTxt.font = 'Comic Sans MS';
     canvasTxt.fontSize = content.fontSize;
     canvasTxt.align = content.textAlign;
     canvasTxt.lineHeight = content.fontSize * content.lineHeight;

@@ -5,6 +5,5 @@ const router = express.Router();
 
 router.get('/', MainController.home);
 router.post('/image', MainController.createImage);
-router.post('/fonts', upload.single('file'), MainController.uploadFonts);
 
 module.exports = router;

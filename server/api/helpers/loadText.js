@@ -10,7 +10,7 @@ const canvasTxt = require('canvas-txt').default
     canvasTxt.align = content.textAlign;
     canvasTxt.lineHeight = content.fontSize * content.lineHeight;
     canvasTxt.justify = false;
-    canvasTxt.drawText(ctx, txt, content.left, content.top - content.fontSize, content.width, content.height); //drawText(ctx, text, x, y, width, height)
+    canvasTxt.drawText(ctx, txt, content.left, content.top, content.width, content.height); //drawText(ctx, text, x, y, width, height)
   };
 
 module.exports = loadText;

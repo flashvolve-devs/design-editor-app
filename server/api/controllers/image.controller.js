@@ -12,7 +12,7 @@ const downloadFile = require('../helpers/downloadFont');
 module.exports = class MainController {
 
     static async home(_req, res) {
-        res.send('=== Design Editor ===');;
+        res.send('=== Design Editor ===');
     }
 
     static async downloadFonts(contentJSON) {

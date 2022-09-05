@@ -11,20 +11,18 @@ const { createCanvas, Image, registerFont } = require('canvas');
 module.exports = class MainController {
 
     static async home(_req, res) {
-        res.send('=== Design Editor ===')
+        res.send('=== Design Editor ===');
     }
 
     static async uploadFonts(req, res, _next) {
-        console.log(req.file, req.body)
-        res.send('font upload')
+        console.log(req.file, req.body);
+        res.send('font upload');
     }
 
     static async createImage(req, res) {
         const response = req.body;
         const canvasWidth = response.frame.width;
         const canvasHeight = response.frame.height;
-
-        //const font = new Font()
 
         registerFont(path.join(__dirname, '../assets/fonts/ComicSansMS3.ttf'), { family: 'Comic Sans MS' })
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');

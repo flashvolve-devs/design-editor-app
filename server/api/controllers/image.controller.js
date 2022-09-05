@@ -51,7 +51,9 @@ module.exports = class MainController {
         const canvasHeight = data.frame.height;
 
         const contentJSON = data.content[0] == undefined ? data.scene.layers : data.content[0];
-        await MainController.downloadFonts(contentJSON);//call method downloadFonts
+        await MainController.downloadFonts(contentJSON
+            .filter(item => item.name == 'StaticText' || item.name == 'Group')
+        ); //call method downloadFonts
 
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
         const ctx = canvas.getContext('2d');

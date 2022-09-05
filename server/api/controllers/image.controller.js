@@ -30,6 +30,20 @@ module.exports = class MainController {
                 registerFont(path.join(__dirname, `../assets/fonts/${fontName}.ttf`),
                     { family: contentJSON[i].fontFamily });
             }
+
+            if (nameMode === 'Group') {
+                for (let j = 0; j < contentJSON[i].objects.length; j++) {
+
+                    const fontUrl = contentJSON[i].objects[j].fontURL;
+                    const fontName = (contentJSON[i].objects[j].fontFamily);
+                    const pathFile = path.join(__dirname, `../assets/fonts/${fontName}.ttf`);
+
+                    await downloadFile(fontUrl, pathFile);
+
+                    registerFont(path.join(__dirname, `../assets/fonts/${fontName}.ttf`),
+                        { family: contentJSON[i].objects[j].fontFamily });
+                }
+            }
         }
     }
 
@@ -39,10 +53,12 @@ module.exports = class MainController {
         const canvasHeight = data.frame.height;
 
         const contentJSON = data.content[0] == undefined ? data.scene.layers : data.content[0];
-        await MainController.downloadFonts(contentJSON);//call method downloadFonts
 
-        registerFont(path.join(__dirname, '../assets/fonts/ComicSansMS3.ttf'), { family: 'Comic Sans MS' })
-        const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
+        await MainController.downloadFonts(contentJSON
+            .filter(item => item.name == 'StaticText' || item.name == 'Group')
+        ); //call method downloadFonts
+
+        const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg'); //create canvas
         const ctx = canvas.getContext('2d');
 
 

@@ -20,7 +20,7 @@ const sendToCloud = async () => {
 
     const config = {
         method: 'post',
-        url: `https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=${generateRandomString(10)}.jpeg`,
+        url: `https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=${`canva-image-${generateRandomString(10)}`}.jpeg`,
         headers: {
             ...data.getHeaders()
         },

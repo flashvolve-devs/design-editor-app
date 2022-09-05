@@ -6,6 +6,8 @@ const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
 const { createCanvas, Image, registerFont } = require('canvas');
 const downloadFile = require('../helpers/downloadFont');
+// const Font = require('../models/Fonts');
+// const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 
@@ -53,6 +55,7 @@ module.exports = class MainController {
         const contentJSON = data.content[0] == undefined ? data.scene.layers : data.content[0];
         await MainController.downloadFonts(contentJSON);//call method downloadFonts
 
+        registerFont(path.join(__dirname, '../assets/fonts/ComicSansMS3.ttf'), { family: 'Comic Sans MS' })
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
         const ctx = canvas.getContext('2d');
 

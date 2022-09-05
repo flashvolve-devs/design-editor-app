@@ -5,30 +5,46 @@ const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
 const { createCanvas, Image, registerFont } = require('canvas');
+const downloadFile = require('../helpers/downloadFont');
 // const Font = require('../models/Fonts');
 // const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 
     static async home(_req, res) {
-        res.send('=== Design Editor ===');
+        res.send('=== Design Editor ===');;
     }
 
-    static async uploadFonts(req, res, _next) {
-        console.log(req.file, req.body);
-        res.send('font upload');
+    static async downloadFonts(contentJSON) {
+        for (let i = 0; i < contentJSON.length; i++) {
+            const nameMode = contentJSON[i].name;
+
+            if (nameMode === 'StaticText') {
+
+                const fontUrl = contentJSON[i].fontURL;
+                const fontName = (contentJSON[i].fontFamily);
+                const pathFile = path.join(__dirname, `../assets/fonts/${fontName}.ttf`);
+
+                await downloadFile(fontUrl, pathFile);
+
+                registerFont(path.join(__dirname, `../assets/fonts/${fontName}.ttf`),
+                    { family: contentJSON[i].fontFamily });
+            }
+        }
     }
 
     static async createImage(req, res) {
-        const response = req.body;
-        const canvasWidth = response.frame.width;
-        const canvasHeight = response.frame.height;
+        const data = req.body;
+        const canvasWidth = data.frame.width;
+        const canvasHeight = data.frame.height;
+
+        const contentJSON = data.content[0] == undefined ? data.scene.layers : data.content[0];
+        await MainController.downloadFonts(contentJSON);//call method downloadFonts
 
         registerFont(path.join(__dirname, '../assets/fonts/ComicSansMS3.ttf'), { family: 'Comic Sans MS' })
         const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
         const ctx = canvas.getContext('2d');
 
-        const contentJSON = response.content[0] == undefined ? response.scene.layers : response.content[0];
 
         for (let i = 0; i < contentJSON.length; i++) {
             const nameMode = contentJSON[i].name;
@@ -48,8 +64,8 @@ module.exports = class MainController {
                     await loadImageUrl(ctx, contentJSON[i]);
                     break;
 
-                 case 'Group':
-                     for (let j = 0; j < contentJSON[i].objects.length; j++) {
+                case 'Group':
+                    for (let j = 0; j < contentJSON[i].objects.length; j++) {
                         await loadText(ctx, contentJSON[i].objects[j]);
                     }
                     break;
@@ -73,7 +89,5 @@ module.exports = class MainController {
         const IdInCloud = ((await sendToCloud()).id).split('/', 2);
 
         res.send(`https://storage.googleapis.com/${IdInCloud[0]}/${IdInCloud[1]}`);
-
-        //res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
     }
 }

@@ -1,7 +1,7 @@
 import { IFrame, ILayer } from "@layerhub-io/types"
 import axios from "axios"
 
-function ApiService(_data: {
+async function ApiService(_data: {
     id: string
     type: string
     name: string | undefined
@@ -14,23 +14,21 @@ function ApiService(_data: {
         // url: "https://design-editor-app-z22dtvdr6q-uc.a.run.app/image",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Headers': 'Access-Control-Request-Headers'
         },
-        data: JSON.stringify(_data),
+        data: _data,
     }
 
-    let result;
-
-    axios(config)
-        .then(async function (response) {
+    await axios(config)
+    .then(function (response) {
+            console.log("oi")
             console.log(JSON.stringify(response.data));
-            result = await response.data
+            return response.data
         })
         .catch(function (error) {
             console.log(error)
         })
-
-    return result
 }
 
 export default ApiService

@@ -33,7 +33,7 @@ export default function () {
   const editor = useEditor()
   const inputFileRef = React.useRef<HTMLInputElement>(null)
 
-  const parseGraphicJSON = (toSave? : string) => {
+  const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
 
     const updatedScenes = scenes.map((scn) => {
@@ -52,7 +52,8 @@ export default function () {
     }
 
     if (toSave === 'save') {
-      const urlImage = ApiService(presentationTemplate)
+      console.log(presentationTemplate)
+      const urlImage = await ApiService(presentationTemplate)
       console.log(urlImage)
       SAMPLE_TEMPLATES.push(presentationTemplate)
     } else makeDownload(presentationTemplate)
@@ -125,7 +126,7 @@ export default function () {
   const saveTemplate = async () => {
     if (editor) {
       if (editorType === "GRAPHIC") {
-        return parseGraphicJSON('save')
+        return await parseGraphicJSON('save')
       } else if (editorType === "PRESENTATION") {
         return parsePresentationJSON('save')
       } else {
@@ -137,7 +138,7 @@ export default function () {
   const makeDownloadTemplate = async () => {
     if (editor) {
       if (editorType === "GRAPHIC") {
-        return parseGraphicJSON()
+        return await parseGraphicJSON()
       } else if (editorType === "PRESENTATION") {
         return parsePresentationJSON()
       } else {

@@ -33,7 +33,7 @@ export default function () {
   const editor = useEditor()
   const inputFileRef = React.useRef<HTMLInputElement>(null)
 
-  const parseGraphicJSON = async (toSave? : string) => {
+  const parseGraphicJSON = (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
 
     const updatedScenes = scenes.map((scn) => {
@@ -52,7 +52,7 @@ export default function () {
     }
 
     if (toSave === 'save') {
-      const urlImage = await ApiService(presentationTemplate)
+      const urlImage = ApiService(presentationTemplate)
       console.log(urlImage)
       SAMPLE_TEMPLATES.push(presentationTemplate)
     } else makeDownload(presentationTemplate)

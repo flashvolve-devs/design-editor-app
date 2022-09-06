@@ -43,7 +43,7 @@ function GraphicEditor() {
           </div>
         </div>
       </Container>
-    </>
+    </> 
   )
 }
 

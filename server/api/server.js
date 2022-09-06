@@ -1,11 +1,19 @@
 const express = require("express");
 const body_parser = require("body-parser");
 const app = express().use(body_parser.json());
+const cors = require("cors");
 //const mongodb = require('mongodb')
 //const dbconnect = require('../database/dbconnect')
 
 /* Routes */
 const routes = require('./routes/router')
+
+app.use(cors());
+
+app.use((_req, res, next) =>{
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+})
 
 app.use('/', routes)
 

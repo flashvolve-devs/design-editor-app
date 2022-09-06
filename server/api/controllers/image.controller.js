@@ -49,6 +49,7 @@ module.exports = class MainController {
 
     static async createImage(req, res) {
         const data = req.body;
+        console.log(data)
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
 

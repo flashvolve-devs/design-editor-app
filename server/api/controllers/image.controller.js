@@ -6,8 +6,6 @@ const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
 const { createCanvas, Image, registerFont } = require('canvas');
 const downloadFile = require('../helpers/downloadFont');
-// const Font = require('../models/Fonts');
-// const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 
@@ -49,7 +47,6 @@ module.exports = class MainController {
 
     static async createImage(req, res) {
         const data = req.body;
-        console.log(data)
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
 

@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { FormEvent, useContext } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import EmailInput from '../../components/Login/EmailInput';
 import PasswordInput from '../../components/Login/PasswordInput';
-import getToken from '../services/getToken';
+// import getToken from '../services/getToken';
 import { AppContext } from '../../contexts/AppContext';
-import getTokenData from '../services/getTokenData';
+// import getTokenData from '../services/getTokenData';
 
 export default function LoginForm() {
   const {
@@ -35,14 +35,14 @@ export default function LoginForm() {
     if (userStorage === null) {
       try {
         localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
-        localStorage.setItem('isLogged', true);
+        localStorage.setItem('isLogged', 'true');
       } catch (error) {
         console.log(error);
       }
     }
   }
 
-  async function onSubmitLogin(e) {
+  async function onSubmitLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const token = await getToken({ email, password });
 

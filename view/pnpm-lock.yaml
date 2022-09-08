@@ -14,6 +14,7 @@ specifiers:
   '@vitejs/plugin-react': ^2.0.0
   axios: ^0.27.2
   baseui: ^12.0.0
+  cors: ^2.8.5
   i18next: ^21.8.13
   install: ^0.13.0
   lodash: ^4.17.21
@@ -24,13 +25,12 @@ specifiers:
   react-colorful: ^5.5.1
   react-dom: ^18.0.0
   react-i18next: ^11.18.0
+  react-icons: ^4.4.0
   react-player: ^2.10.1
   react-redux: ^8.0.1
   react-responsive-carousel: ^3.2.23
   react-router-dom: ^6.3.0
   resize-observer-polyfill: ^1.5.1
-  styletron-engine-atomic: 1.5.0-beta.2
-  styletron-react: 6.1.0-beta.2
   typescript: ^4.6.3
   vite: ^3.0.0
 
@@ -41,7 +41,8 @@ dependencies:
   '@reduxjs/toolkit': 1.8.2_kkwg4cbsojnjnupd3btipussee
   '@types/node': 17.0.45
   axios: 0.27.2
-  baseui: 12.0.0_vx6l3m7grhdjsdty3rfvukcune
+  baseui: 12.0.0_twyhzqqpkwvvgrmyeapdo6i4my
+  cors: 2.8.5
   i18next: 21.8.13
   install: 0.13.0
   lodash: 4.17.21
@@ -52,13 +53,12 @@ dependencies:
   react-colorful: 5.5.1_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-i18next: 11.18.0_zqwsj3zkvc6lj2if6vhvnllc7u
+  react-icons: 4.4.0_react@18.2.0
   react-player: 2.10.1_react@18.2.0
   react-redux: 8.0.2_fzknh3pugl53jp7xsetxkg5ani
   react-responsive-carousel: 3.2.23
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   resize-observer-polyfill: 1.5.1
-  styletron-engine-atomic: 1.5.0-beta.2
-  styletron-react: 6.1.0-beta.2_react@18.2.0
 
 devDependencies:
   '@layerhub-io/types': 0.1.0
@@ -928,10 +928,6 @@ packages:
       reselect: 4.1.6
     dev: false
 
-  /@rtsao/csstype/2.6.5-forked.0:
-    resolution: {integrity: sha512-0HwnY8uPWcCloTgdbbaJG3MbDUfNf6yKWZfCKxFv9yj2Sbp4mSKaIjC7Cr/5L4hMxvrrk85CU3wlAg7EtBBJ1Q==}
-    dev: false
-
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -1118,7 +1114,7 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: false
 
-  /baseui/12.0.0_vx6l3m7grhdjsdty3rfvukcune:
+  /baseui/12.0.0_twyhzqqpkwvvgrmyeapdo6i4my:
     resolution: {integrity: sha512-gmYcDlmkJPAtvUJj+bP3lkh/I+/ul1SyxL75Tf7h3AwyBdL3UbSzJBIMMMyIDq6MWLORlgKoU4JdtR6gTR6Cjg==}
     engines: {node: '>=10.x'}
     requiresBuild: true
@@ -1154,7 +1150,6 @@ packages:
       react-virtualized-auto-sizer: 1.0.6_biqbaboplfbrettd7655fr4n2y
       react-window: 1.8.7_biqbaboplfbrettd7655fr4n2y
       resize-observer-polyfill: 1.5.1
-      styletron-react: 6.1.0-beta.2_react@18.2.0
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -1272,15 +1267,16 @@ packages:
       safe-buffer: 5.1.2
     dev: true
 
-  /credit-card-type/8.3.0:
-    resolution: {integrity: sha512-czfZUpQ7W9CDxZL4yFLb1kFtM/q2lTOY975hL2aO+DC8+GRNDVSXVCHXhVFZPxiUKmQCZbFP8vIhxx5TBQaThw==}
+  /cors/2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
     dev: false
 
-  /css-in-js-utils/2.0.1:
-    resolution: {integrity: sha512-PJF0SpJT+WdbVVt0AOYp9C8GnuruRlL/UFW7932nLWmFLQTaWEzTBQEx7/hn4BuV+WON75iAViSUJLiU3PKbpA==}
-    dependencies:
-      hyphenate-style-name: 1.0.4
-      isobject: 3.0.1
+  /credit-card-type/8.3.0:
+    resolution: {integrity: sha512-czfZUpQ7W9CDxZL4yFLb1kFtM/q2lTOY975hL2aO+DC8+GRNDVSXVCHXhVFZPxiUKmQCZbFP8vIhxx5TBQaThw==}
     dev: false
 
   /cssom/0.3.8:
@@ -2071,10 +2067,6 @@ packages:
     dev: false
     optional: true
 
-  /hyphenate-style-name/1.0.4:
-    resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
-    dev: false
-
   /i18next/21.8.13:
     resolution: {integrity: sha512-DpzwrJq7Y8tjUHxx6ByOkUIjrGYdQI5Mfv4XEI7q2RWdknQ7TaO9bKi8hS/LqYD6pBV5YGxJLReyLkOCxIpouA==}
     dependencies:
@@ -2111,12 +2103,6 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: false
 
-  /inline-style-prefixer/5.1.2:
-    resolution: {integrity: sha512-PYUF+94gDfhy+LsQxM0g3d6Hge4l1pAqOSOiZuHWzMvQEGsbRQ/ck2WioLqrY2ZkHyPgVUXxn+hrkF7D6QUGbA==}
-    dependencies:
-      css-in-js-utils: 2.0.1
-    dev: false
-
   /install/0.13.0:
     resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
     engines: {node: '>= 0.10'}
@@ -2148,11 +2134,6 @@ packages:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
     dev: false
     optional: true
-
-  /isobject/3.0.1:
-    resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
-    engines: {node: '>=0.10.0'}
-    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2628,6 +2609,14 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /react-icons/4.4.0_react@18.2.0:
+    resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-input-mask/2.0.4_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==}
     peerDependencies:
@@ -2990,31 +2979,6 @@ packages:
     dev: false
     optional: true
 
-  /styletron-engine-atomic/1.5.0-beta.2:
-    resolution: {integrity: sha512-JsS2+HhCe23IHXCwdsqvBCqIb4/pOQbvKiDg4IUSpp5GNt9hhyGgwTzjNpy1Po6Ihmmj3VS50ZwaSNGYmYcf0g==}
-    dependencies:
-      inline-style-prefixer: 5.1.2
-      styletron-standard: 3.1.0-beta.2
-    dev: false
-
-  /styletron-react/6.1.0-beta.2_react@18.2.0:
-    resolution: {integrity: sha512-ohaOWaA1xJ+mrCpySOcRi2281+57xOOJuxvH5/B/3tTTHA+xhLbb+YUp4pMgjAMqJchCDPsk0PRejsB+HmVuDQ==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      styletron-standard: 3.1.0-beta.2
-    dev: false
-
-  /styletron-standard/3.1.0-beta.2:
-    resolution: {integrity: sha512-qR1EdYu4xGcmH+qXmBueA/34UOavcgG3J6jGOr9BQiqwRFSNehNnGFXmLYyoyAlyidrcYuXXcUaGvREc6v1qdQ==}
-    dependencies:
-      '@rtsao/csstype': 2.6.5-forked.0
-      csstype: 3.1.0
-      inline-style-prefixer: 5.1.2
-    dev: false
-
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -3174,6 +3138,11 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
     optional: true
+
+  /vary/1.1.2:
+    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
+    engines: {node: '>= 0.8'}
+    dev: false
 
   /vite/3.0.2:
     resolution: {integrity: sha512-TAqydxW/w0U5AoL5AsD9DApTvGb2iNbGs3sN4u2VdT1GFkQVUfgUldt+t08TZgi23uIauh1TUOQJALduo9GXqw==}

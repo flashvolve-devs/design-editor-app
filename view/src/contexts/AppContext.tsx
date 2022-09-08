@@ -17,6 +17,17 @@ interface IAppContext {
     setActiveSubMenu: (option: string) => void;
     currentTemplate: any;
     setCurrentTemplate: any;
+    email: string | undefined | any;
+    setEmail: (option: string) => void;
+    password: string | undefined | any;
+    setPassword: (option: string) => void;
+    visible: boolean | any;
+    setVisible: (option: boolean | any) => void | any;
+    invalidUser: boolean | any;
+    setInvalidUser: (option: boolean | any) => void | any;
+    token: string | any;
+    setToken: (option: boolean | any) => void | any;
+    
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -34,6 +45,16 @@ export const AppContext = createContext<IAppContext>({
     setActiveSubMenu: (value: string) => {},
     currentTemplate: {},
     setCurrentTemplate: {},
+    email: '',
+    setEmail: () => {},
+    password: '',
+    setPassword: () => {},
+    visible: false,
+    setVisible: () => {},
+    invalidUser: false,
+    setInvalidUser: () => {},
+    token: '',
+    setToken: () => {},
 });
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
@@ -44,6 +65,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const [activePanel, setActivePanel] = useState<PanelType>(PanelType.TEMPLATES);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [currentTemplate, setCurrentTemplate] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [visible, setVisible] = useState();
+    const [invalidUser, setInvalidUser] = useState(false);
+    const [token, setToken] = useState('');
+
     const context = {
         isMobile,
         setIsMobile,
@@ -59,6 +86,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setUploads,
         currentTemplate,
         setCurrentTemplate,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        visible,
+        setVisible,
+        invalidUser,
+        setInvalidUser,
+        token,
+        setToken
     };
     return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 }

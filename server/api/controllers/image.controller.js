@@ -4,10 +4,8 @@ const sendToCloud = require('../middlewares/saveInCloud.service.js');
 const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
-const { createCanvas, Image, registerFont } = require('canvas');
+const { createCanvas, registerFont } = require('canvas');
 const downloadFile = require('../helpers/downloadFont');
-// const Font = require('../models/Fonts');
-// const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 
@@ -53,12 +51,12 @@ module.exports = class MainController {
         const canvasHeight = data.frame.height;
 
         const contentJSON = data.content[0] == undefined ? data.scene.layers : data.content[0];
+
         await MainController.downloadFonts(contentJSON
             .filter(item => item.name == 'StaticText' || item.name == 'Group')
         ); //call method downloadFonts
 
-        registerFont(path.join(__dirname, '../assets/fonts/ComicSansMS3.ttf'), { family: 'Comic Sans MS' })
-        const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg');
+        const canvas = createCanvas(canvasWidth, canvasHeight, 'jpeg'); //create canvas
         const ctx = canvas.getContext('2d');
 
 
@@ -91,12 +89,6 @@ module.exports = class MainController {
             }
         }
 
-        const base64 = canvas.toDataURL();
-        const img = new Image();
-        img.onload = () => ctx.drawImage(img, 0, 0);
-        img.onerror = err => { throw err };
-        img.src = base64;
-
         /* Saving the image to the local file system. */
         fs.writeFileSync(path.join(__dirname, '../assets/images/new-image.jpeg'), canvas.toBuffer());
 
@@ -105,7 +97,5 @@ module.exports = class MainController {
         const IdInCloud = ((await sendToCloud()).id).split('/', 2);
 
         res.send(`https://storage.googleapis.com/${IdInCloud[0]}/${IdInCloud[1]}`);
-
-        //res.sendFile(path.join(__dirname, '../assets/images/new-image.jpeg'));
     }
 }

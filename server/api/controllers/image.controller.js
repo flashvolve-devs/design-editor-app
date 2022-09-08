@@ -4,7 +4,7 @@ const sendToCloud = require('../middlewares/saveInCloud.service.js');
 const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
-const { createCanvas, Image, registerFont } = require('canvas');
+const { createCanvas, registerFont } = require('canvas');
 const downloadFile = require('../helpers/downloadFont');
 
 module.exports = class MainController {
@@ -88,12 +88,6 @@ module.exports = class MainController {
                     break;
             }
         }
-
-        const base64 = canvas.toDataURL();
-        const img = new Image();
-        img.onload = () => ctx.drawImage(img, 0, 0);
-        img.onerror = err => { throw err };
-        img.src = base64;
 
         /* Saving the image to the local file system. */
         fs.writeFileSync(path.join(__dirname, '../assets/images/new-image.jpeg'), canvas.toBuffer());

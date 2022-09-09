@@ -15,7 +15,7 @@ import { loadTemplateFonts } from "../../../../utils/fonts"
 import { loadVideoEditorAssets } from "../../../../utils/video"
 import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
 import ApiService from "../../../../services/flashvolveServer"
-
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -32,6 +32,7 @@ export default function () {
   const scenes = useDesignEditorScenes()
   const editor = useEditor()
   const inputFileRef = React.useRef<HTMLInputElement>(null)
+  const navigate = useNavigate();
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
@@ -313,6 +314,20 @@ export default function () {
             }}
           >
             <Play size={24} />
+          </Button>
+          <Button
+            size="compact"
+            onClick={() => { localStorage.clear(); navigate('/', { replace: true })}}
+            kind={KIND.tertiary}
+            overrides={{
+              StartEnhancer: {
+                style: {
+                  marginRight: "4px",
+                },
+              },
+            }}
+          >
+            Logout
           </Button>
         </Block>
       </Container>

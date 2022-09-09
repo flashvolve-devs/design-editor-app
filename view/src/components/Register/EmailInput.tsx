@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import AppContext from '../../context/AppContext';
+import { useContext } from 'react';
+import { AppContext } from '../../contexts/AppContext';
 
 export default function EmailInput() {
   const { email, setEmail } = useContext(AppContext);

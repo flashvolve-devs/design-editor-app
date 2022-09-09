@@ -1,4 +1,4 @@
-const CryptoJS = require('crypto-js');
+import CryptoJS from 'crypto-js';
 
 export default async function create(data: any, path: any) {
   const URL = `http://localhost:3001/${path}`;

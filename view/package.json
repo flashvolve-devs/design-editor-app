@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "baseui": "^12.0.0",
     "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
     "i18next": "^21.8.13",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@layerhub-io/types": "^0.1.0",
+    "@types/crypto-js": "^4.1.1",
     "@types/lodash": "^4.14.182",
     "@types/mime": "^2.0.3",
     "@types/react": "^18.0.0",

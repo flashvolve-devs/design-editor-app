@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./views/Login/Login"
 import DesignEditor from "./views/DesignEditor"
+import Login from "./views/Login/Login"
+import Register from "./views/Login/Register"
+
 
 function Router() {
   return (
@@ -8,6 +10,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/editor" element={<DesignEditor />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   )

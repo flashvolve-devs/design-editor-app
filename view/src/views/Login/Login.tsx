@@ -9,15 +9,9 @@ export default function LoginPage(/* { history } */) {
 
   useEffect(() => {
     const logged = localStorage.getItem('isLogged');
-    const routeToNavigate = {
-      administrator: '../admin/manage',
-      seller: '../seller/orders',
-      customer: '../customer/products',
-    };
 
     if (logged === 'true') {
-      const { role } = JSON.parse(localStorage.getItem('user'));
-      navigate(`${routeToNavigate[role]}`, { replace: true });
+      navigate('/editor', { replace: true });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

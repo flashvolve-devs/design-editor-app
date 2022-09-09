@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const sendToCloud = require('../middlewares/saveInCloud.service.js');
+const sendToCloud = require('../middlewares/saveInCloud.middleware');
 const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');

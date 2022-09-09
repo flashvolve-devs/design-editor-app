@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmailInput from '../../components/Login/EmailInput.jsx';
 import PasswordInput from '../../components/Register/PasswordInput';
 import NameInput from '../../components/Register/NameInput';
-import AppContext from '../context/AppContext';
-import createUser from '../services/apiCreate';
+import { AppContext } from '../../contexts/AppContext';
+import createUser from '../../services/apiCreate';
 
 export default function RegisterPage() {
   const {
@@ -24,7 +24,7 @@ export default function RegisterPage() {
     return !inputValidation;
   }
 
-  async function onSubmitUser(e) {
+  async function onSubmitUser(e: any) {
     e.preventDefault();
 
     const newUser = await createUser({ name, email, password }, 'user');
@@ -44,7 +44,6 @@ export default function RegisterPage() {
           <PasswordInput />
           <button
             data-testid="common_register__button-register"
-            variant="success"
             type="submit"
             disabled={ validateRegister() }
           >

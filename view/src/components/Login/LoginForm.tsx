@@ -3,9 +3,9 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import EmailInput from '../../components/Login/EmailInput';
 import PasswordInput from '../../components/Login/PasswordInput';
-// import getToken from '../services/getToken';
+import getToken from '../../services/getToken';
 import { AppContext } from '../../contexts/AppContext';
-// import getTokenData from '../services/getTokenData';
+import getTokenData from '../../services/getTokenData';
 
 export default function LoginForm() {
   const {
@@ -13,12 +13,6 @@ export default function LoginForm() {
     password, setPassword, setToken, setInvalidUser,
   } = useContext(AppContext);
   const navigate = useNavigate();
-
-  const routeToNavigate = {
-    administrator: '../admin/manage',
-    seller: '../seller/orders',
-    customer: '../customer/products',
-  };
 
   function validateLogin() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
@@ -51,10 +45,7 @@ export default function LoginForm() {
       setEmail('');
       setPassword('');
       await setProfileData(token);
-      const { role } = await getTokenData(token);
-      if (routeToNavigate[role]) {
-        navigate(`${routeToNavigate[role]}`, { replace: true });
-      }
+      navigate('/editor', { replace: true });
     } else {
       setInvalidUser(true);
     }
@@ -79,7 +70,6 @@ export default function LoginForm() {
       </div>
       <button
         data-testid="common_login__button-login"
-        variant="success"
         type="submit"
         disabled={ validateLogin() }
       >
@@ -88,7 +78,6 @@ export default function LoginForm() {
       <button
         className="login-register-btn"
         data-testid="common_login__button-register"
-        variant="success"
         type="button"
         onClick={ () => navigate('../register', { replace: false }) }
       >

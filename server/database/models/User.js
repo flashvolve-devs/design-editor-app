@@ -17,11 +17,7 @@ const User = (sequelize, DataTypes) => {
     password: {
       allowNull: false,
       type: DataTypes.STRING,
-    },
-    role: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },  
+    }
   }, {
     underscored: true,
     sequelize,
@@ -29,13 +25,6 @@ const User = (sequelize, DataTypes) => {
     tableName: 'users',
     timestamps: false,
   });
-
-  User.associate = (models) => {
-    User.hasMany(models.Sale,
-      { foreignKey: 'userId', as: 'user' });
-    User.hasMany(models.Sale,
-      { foreignKey: 'sellerId', as: 'seller' });
-  };
   
   return User;
 };

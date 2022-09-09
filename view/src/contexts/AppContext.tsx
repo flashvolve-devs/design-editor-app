@@ -17,6 +17,8 @@ interface IAppContext {
     setActiveSubMenu: (option: string) => void;
     currentTemplate: any;
     setCurrentTemplate: any;
+    name: string | undefined | any;
+    setName: (option: string) => void;
     email: string | undefined | any;
     setEmail: (option: string) => void;
     password: string | undefined | any;
@@ -27,7 +29,6 @@ interface IAppContext {
     setInvalidUser: (option: boolean | any) => void | any;
     token: string | any;
     setToken: (option: boolean | any) => void | any;
-    
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -45,6 +46,8 @@ export const AppContext = createContext<IAppContext>({
     setActiveSubMenu: (value: string) => {},
     currentTemplate: {},
     setCurrentTemplate: {},
+    name: '',
+    setName: () => {},
     email: '',
     setEmail: () => {},
     password: '',
@@ -65,6 +68,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const [activePanel, setActivePanel] = useState<PanelType>(PanelType.TEMPLATES);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [currentTemplate, setCurrentTemplate] = useState(null);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [visible, setVisible] = useState();
@@ -86,6 +90,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setUploads,
         currentTemplate,
         setCurrentTemplate,
+        name,
+        setName,
         email,
         setEmail,
         password,

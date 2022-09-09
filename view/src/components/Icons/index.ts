@@ -2,6 +2,7 @@ import Background from "./Background"
 import Elements from "./Elements"
 import Text from "./Text"
 import Templates from "./Templates"
+import PersonalTemplates from "./PersonalTemplates"
 import Search from "./Search"
 import Images from "./Images"
 import Graphics from "./Graphics"
@@ -29,6 +30,7 @@ class Icons {
   static Elements = Elements
   static Text = Text
   static Templates = Templates
+  static PersonalTemplates = PersonalTemplates
   static Search = Search
   static Images = Images
   static Videos = Video

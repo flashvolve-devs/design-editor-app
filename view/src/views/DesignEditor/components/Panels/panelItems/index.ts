@@ -4,6 +4,7 @@ import Customize from "./Customize"
 import FontSelector from "./FontSelector"
 import Pixabay from "./Pixabay"
 import Templates from "./Templates"
+import PersonalTemplates from "./PersonalTemplates"
 import Uploads from "./Uploads"
 import Images from "./Images"
 import Videos from "./Videos"
@@ -20,6 +21,7 @@ export default {
   FontSelector: FontSelector,
   Pixabay: Pixabay,
   Templates: Templates,
+  PersonalTemplates: PersonalTemplates,
   Uploads: Uploads,
   Images: Images,
   Videos: Videos,

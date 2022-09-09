@@ -6,8 +6,6 @@ const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
 const { createCanvas, registerFont } = require('canvas');
 const downloadFile = require('../helpers/downloadFont');
-// const Font = require('../models/Fonts');
-// const { ObjectId } = require('mongodb');
 
 module.exports = class MainController {
 

@@ -5,7 +5,7 @@ import PasswordInput from '../../components/Register/PasswordInput';
 import NameInput from '../../components/Register/NameInput';
 import { AppContext } from '../../contexts/AppContext';
 import createUser from '../../services/apiCreate';
-
+import '../../components/Register/register.css'
 export default function RegisterPage() {
   const {
     name, email, password,
@@ -39,6 +39,7 @@ export default function RegisterPage() {
     <div className="register-page-container">
       <div className="register-items-container">
         <form className="register-form" onSubmit={ (e) => onSubmitUser(e) }>
+        <div className="title-register"> <h1>Register</h1> </div>
           <NameInput />
           <EmailInput />
           <PasswordInput />
@@ -46,8 +47,9 @@ export default function RegisterPage() {
             data-testid="common_register__button-register"
             type="submit"
             disabled={ validateRegister() }
+            className="register-button"
           >
-            Register
+            REGISTER
           </button>
         </form>
         {

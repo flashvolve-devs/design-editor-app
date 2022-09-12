@@ -1,5 +1,4 @@
-
-.login-page-container{
+.register-page-container {
     width: 100%;
     /* background-color: #03233e; */
     background-image: linear-gradient(#03233e, #4b657a);
@@ -7,18 +6,18 @@
     align-items: center;
     justify-content: center;
 }
-.login-items-container{
+.register-items-container{
     border: 2px solid #11a8ee;
     border-radius: 10px;
     width: 25rem;
     padding: 5px;
     transition:0.5s
 }
-.login-items-container:hover{
+.register-items-container:hover{
     transform: scale(1.02);
     box-shadow: 2px 2px 10px #657b8d
 }
-.login-form {
+.register-form {
     border: 2px solid #11a8ee;
     border-radius: 8px;
     display: flex;
@@ -27,10 +26,14 @@
     flex-direction: column;
     height: 40rem;
 }
-.title-login{
-    color: #fff;
+.register-form div{
+    padding: 4px;
 }
-.login-form button {
+.title-register{
+    color: #fff;
+    margin-top: 0 !important;
+}
+.register-form button {
     height: 30px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -39,22 +42,23 @@
     transition: 0.8s;
     border: none;
 }
-.login-form button:hover {
+.register-form button:hover {
     background-color: #07e28e;
     cursor: pointer;
 }
 /* input e-mail */
-.login-form div label input {
+.register-form div label input {
     text-align: center;
     transition: 0.2s;
     border-radius: 5px;
 }
-.login-form div label input:hover{
+
+.register-form div label input:hover{
     box-shadow: 2px 2px 7px #657b8d;
     transform: scale(1.02);
 }
 /* password */
-.input-format{
+.register-form div{
     /* display: flex; */
     align-items: center;
     justify-content: center;
@@ -64,6 +68,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.input-name {
+    margin-top: 0rem !important;
 }
 /* button eye password */
 .button-visible{
@@ -97,8 +104,10 @@ input {
     padding: 4px;
     color: #ff0202;
 }
-.login-button{
-    border-radius: 3px;
+.register-button{
+    margin: 1rem !important;
+    background-color: #36343460;
+    border-radius: 5px;
 }
 .message-error-hide{
     min-height: 40px;

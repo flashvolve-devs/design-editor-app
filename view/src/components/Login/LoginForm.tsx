@@ -74,6 +74,7 @@ export default function LoginForm() {
         data-testid="common_login__button-login"
         type="submit"
         disabled={ validateLogin() }
+        className="login-button"
       >
         LOGIN
       </button>

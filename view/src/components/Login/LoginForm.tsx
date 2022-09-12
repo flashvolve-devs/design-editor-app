@@ -53,6 +53,7 @@ export default function LoginForm() {
 
   return (
     <form className="login-form" onSubmit={ (e) => onSubmitLogin(e) }>
+      <div className="title-login"> <h1>Login</h1> </div>
       <EmailInput />
       <div className="input-format">
         <PasswordInput />

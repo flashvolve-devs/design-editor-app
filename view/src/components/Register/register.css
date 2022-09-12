@@ -54,7 +54,19 @@
     transition: 0.2s;
     border-radius: 5px;
 }
-
+.previews-login{
+    background: none;
+    color: #11a8ee;
+    font-size: 18px !important;
+    background: none !important;
+    border-radius: 3px;
+}
+.previews-login:hover{
+    background: none !important;
+    color: #a0f10a;
+    border-bottom: 1px solid #a0f10a;
+    transform: scale(1.03);
+}
 .register-form div label input:hover{
     box-shadow: 2px 2px 7px #657b8d;
     transform: scale(1.02);

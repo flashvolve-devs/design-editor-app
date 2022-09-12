@@ -66,6 +66,15 @@ export default function RegisterPage() {
           >
             Criar
           </button>
+
+          <button
+            data-testid="common_register__button-register"
+            className="previews-login"
+            onClick={() => {navigate('/', { replace: true });} }
+          >
+            Login
+          </button>
+
         </form>
         {
           invalidRegister

@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-// const app = express().use(body_parser.json());
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 
@@ -15,8 +14,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// const body_parser = require("body-parser");
-// const express = require("express");
 // const cors = require("cors");
 
 app.use((_req, res, next)=> {
@@ -27,10 +24,13 @@ app.use((_req, res, next)=> {
 
 /* Routes */
 const imageRoute = require('./routes/image.route');
+const uploadRoute = require('./routes/upload.route');
 const loginRoute = require('./routes/login.route');
-const userRoute = require('./routes/image.route');
+const userRoute = require('./routes/user.route');
+
 
 app.use('/', imageRoute);
+app.use('/upload', uploadRoute);
 app.use('/login', loginRoute);
 app.use('/user', userRoute);
 

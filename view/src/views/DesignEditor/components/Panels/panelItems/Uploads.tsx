@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Block } from "baseui/block"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import Scrollable from "../../../../../components/Scrollable"
@@ -15,7 +15,8 @@ export default function () {
   const [currentFile, setCurrentFile] = React.useState<any>(null)
   const inputFileRef = React.useRef<HTMLInputElement>(null)
   const uploading = useSelector(selectUploading)
-  const uploads = useSelector(selectUploads)
+  // const uploads = useSelector(selectUploads)
+  const [uploads, setUploads] = useState([]);
   const editor = useEditor()
   const dispatch = useAppDispatch()
   const setIsSidebarOpen = useSetIsSidebarOpen()
@@ -24,6 +25,7 @@ export default function () {
     const file = files[0]
     handleUploadFile(file)
     const reader = new FileReader()
+    console.log(reader.result)
     reader.addEventListener(
       "load",
       function () {
@@ -45,7 +47,8 @@ export default function () {
           status: "IN_PROGRESS",
         })
       )
-      dispatch(uploadFile({ file: file }))
+      // console.log(file);
+      // dispatch(uploadFile({ file: file }))
     } catch (err) {
       console.log({ err })
     }
@@ -57,6 +60,7 @@ export default function () {
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleDropFiles(e.target.files!)
+    console.log(e.target.files)
   }
 
   const addImageToCanvas = (url: string) => {
@@ -79,7 +83,6 @@ export default function () {
           }}
         >
           <Block>Uploads</Block>
-
           <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
             <AngleDoubleLeft size={18} />
           </Block>
@@ -99,8 +102,7 @@ export default function () {
             >
               Computer
             </Button>
-            <input onChange={handleFileInput} type="file" id="file" ref={inputFileRef} style={{ display: "none" }} />
-
+            <input onChange={handleFileInput} type="file" id="file" accept="image/*" ref={inputFileRef} style={{ display: "none" }} />
             <div
               style={{
                 marginTop: "1rem",
@@ -110,19 +112,18 @@ export default function () {
               }}
             >
               {uploading && <img width="100%" src={currentFile} alt="uploaded" />}
-
-              {uploads.map((upload) => (
+              {uploads !== [] && uploads.map((upload: string | any, index: number) => (
                 <div
-                  key={upload.id}
+                  key={index}
                   style={{
                     display: "flex",
                     alignItems: "center",
                     cursor: "pointer",
                   }}
-                  onClick={() => addImageToCanvas(upload.url)}
+                  onClick={() => addImageToCanvas(upload)}
                 >
                   <div>
-                    <img width="100%" src={upload.url} alt="preview" />
+                    <img width="100%" src={upload} alt="preview" />
                   </div>
                 </div>
               ))}

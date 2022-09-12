@@ -13,19 +13,32 @@ function generateRandomString(num){
     return result;
 }
 
-const sendToCloud = async () => {
+const sendToCloud = async (type) => {
     const FormData = require('form-data');
     const data = new FormData();
-    data.append('file', fs.createReadStream(path.join(__dirname, '../assets/images/new-image.jpeg')));
-
-    const config = {
-        method: 'post',
-        url: `https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=${`canva-image-${generateRandomString(10)}`}.jpeg`,
-        headers: {
-            ...data.getHeaders()
-        },
-        data: data
-    };
+    
+    let config;
+    if(type === 'upload') {
+        data.append('file', fs.createReadStream(path.join(__dirname, '../assets/images/upload-image.jpeg')));
+        config = {
+            method: 'post',
+            url: `https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=${`upload-image-${generateRandomString(10)}`}.jpeg`,
+            headers: {
+                ...data.getHeaders()
+            },
+            data: data
+        };
+    } else {
+        data.append('file', fs.createReadStream(path.join(__dirname, '../assets/images/new-image.jpeg')));
+        config = {
+            method: 'post',
+            url: `https://storage.googleapis.com/upload/storage/v1/b/flashvolve/o?=multipart&name=${`canva-image-${generateRandomString(10)}`}.jpeg`,
+            headers: {
+                ...data.getHeaders()
+            },
+            data: data
+        };
+    }
 
     return axios(config)
         .then(async function (response) {

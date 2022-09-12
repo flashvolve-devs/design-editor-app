@@ -1,10 +1,8 @@
-import { useEffect, useContext } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../../components/Login/LoginForm';
-import { AppContext } from '../../contexts/AppContext';
-
+import '../../components/Login/login.css'
 export default function LoginPage(/* { history } */) {
-  const { invalidUser } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,12 +17,9 @@ export default function LoginPage(/* { history } */) {
   return (
     <div className="login-page-container">
       <div className="login-items-container">
+        
         <LoginForm />
-        {
-          invalidUser
-            ? <p data-testid="common_login__element-invalid-email">Usuário inválido</p>
-            : null
-        }
+        
       </div>
     </div>
   );

@@ -1,6 +1,19 @@
-const body_parser = require("body-parser");
 const express = require("express");
-const app = express().use(body_parser.json());
+const app = express();
+const bodyParser = require("body-parser");
+const exphbs = require("express-handlebars");
+
+/* config handlebars */
+app.set('view engine', 'handlebars');
+app.engine('handlebars', exphbs.engine());
+app.set('views', './views');
+
+/* config assets */
+app.use(express.static('public'));
+/* body parser */
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 // const cors = require("cors");
 
 app.use((_req, res, next)=> {
@@ -21,4 +34,4 @@ app.use('/upload', uploadRoute);
 app.use('/login', loginRoute);
 app.use('/user', userRoute);
 
-app.listen(process.env.PORT || 3001, () => console.log("Server running here 👉 http://localhost: 3001"));
+app.listen(process.env.PORT || 3001, () => console.log("Server running here 👉 http://localhost:3001"));

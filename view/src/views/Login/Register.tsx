@@ -5,10 +5,12 @@ import PasswordInput from '../../components/Register/PasswordInput';
 import NameInput from '../../components/Register/NameInput';
 import { AppContext } from '../../contexts/AppContext';
 import createUser from '../../services/apiCreate';
+import '../../components/Register/register.css'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 export default function RegisterPage() {
   const {
-    name, email, password,
+    name, email, password, visible, setVisible
   } = useContext(AppContext);
   const navigate = useNavigate();
   const [invalidRegister, setInvalidRegister] = useState(false);
@@ -38,17 +40,41 @@ export default function RegisterPage() {
   return (
     <div className="register-page-container">
       <div className="register-items-container">
-        <form className="register-form" onSubmit={ (e) => onSubmitUser(e) }>
+        <form className="register-form" onSubmit={(e) => onSubmitUser(e)}>
+          <div className="title-register"> <h1>Criar conta</h1> </div>
           <NameInput />
           <EmailInput />
+          <div className='input-password'>
           <PasswordInput />
+            <button
+              type="button"
+              onClick={() => setVisible(!visible)}
+              className="button-visible"
+            >
+              {
+                !visible
+                  ? <AiOutlineEyeInvisible className="icon-eye" />
+                  : <AiOutlineEye className="icon-eye" />
+              }
+            </button>
+          </div>
           <button
             data-testid="common_register__button-register"
             type="submit"
-            disabled={ validateRegister() }
+            disabled={validateRegister()}
+            className="register-button"
           >
-            Register
+            Criar
           </button>
+
+          <button
+            data-testid="common_register__button-register"
+            className="previews-login"
+            onClick={() => {navigate('/', { replace: true });} }
+          >
+            Login
+          </button>
+
         </form>
         {
           invalidRegister

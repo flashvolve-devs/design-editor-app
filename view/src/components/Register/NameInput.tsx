@@ -4,7 +4,7 @@ import { AppContext } from '../../contexts/AppContext';
 export default function NameInput() {
   const { name, setName } = useContext(AppContext);
   return (
-    <div>
+    <div className='input-name'>
       <label htmlFor="name">
         <input
           id="name"

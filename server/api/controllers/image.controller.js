@@ -6,10 +6,11 @@ const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
 const { createCanvas, registerFont } = require('canvas');
 const downloadFile = require('../helpers/downloadFont');
+
 module.exports = class MainController {
 
     static async home(_req, res) {
-        res.send('=== Design Editor ===');
+        res.render('home');
     }
 
     static async downloadFonts(contentJSON) {

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const sendToCloud = require('../middlewares/saveInCloud.service.js');
+const sendToCloud = require('../middlewares/saveInCloud.middleware');
 const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
@@ -47,6 +47,7 @@ module.exports = class MainController {
 
     static async createImage(req, res) {
         const data = req.body;
+        console.log(data)
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
 

@@ -5,7 +5,7 @@ import { loadFonts } from "../../../../../utils/fonts"
 import Scrollable from "../../../../../components/Scrollable"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import { useStyletron } from "baseui"
-import { SAMPLE_TEMPLATES } from "../../../../../constants/editor"
+import { SAMPLE_TEMPLATES } from "../../../../../constants/my-edits"
 import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 // import useEditorType from "../../../../../hooks/useEditorType"
@@ -60,7 +60,7 @@ export default function () {
       <Scrollable>
         <div style={{ padding: "0 1.5rem" }}>
           <div style={{ display: "grid", gap: "0.5rem", gridTemplateColumns: "1fr 1fr" }}>
-            {SAMPLE_TEMPLATES.map((item, index) => {
+            {SAMPLE_TEMPLATES.map((item: { preview: any }, index: React.Key | null | undefined) => {
               return <ImageItem onClick={() => loadTemplate(item)} key={index} preview={`${item.preview}?tr=w-320`} />
             })}
           </div>

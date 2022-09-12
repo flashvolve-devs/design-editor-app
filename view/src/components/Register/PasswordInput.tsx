@@ -4,7 +4,7 @@ import {AppContext} from '../../contexts/AppContext';
 export default function PasswordInput() {
   const { password, setPassword, visible } = useContext(AppContext);
   return (
-    <div>
+    <div className='content-password-btn-eye'>
       <label htmlFor="password">
         <input
           id="password"

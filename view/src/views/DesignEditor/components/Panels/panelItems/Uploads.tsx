@@ -79,7 +79,6 @@ export default function () {
           }}
         >
           <Block>Uploads</Block>
-
           <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
             <AngleDoubleLeft size={18} />
           </Block>
@@ -100,7 +99,6 @@ export default function () {
               Computer
             </Button>
             <input onChange={handleFileInput} type="file" id="file" ref={inputFileRef} style={{ display: "none" }} />
-
             <div
               style={{
                 marginTop: "1rem",
@@ -110,7 +108,6 @@ export default function () {
               }}
             >
               {uploading && <img width="100%" src={currentFile} alt="uploaded" />}
-
               {uploads.map((upload) => (
                 <div
                   key={upload.id}

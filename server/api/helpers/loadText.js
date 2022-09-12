@@ -5,12 +5,12 @@ const canvasTxt = require('canvas-txt').default
 
     ctx.fillStyle = content.fill;
 
-    canvasTxt.font = 'Sans';
+    canvasTxt.font = content.fontFamily;
     canvasTxt.fontSize = content.fontSize;
     canvasTxt.align = content.textAlign;
     canvasTxt.lineHeight = content.fontSize * content.lineHeight;
     canvasTxt.justify = false;
-    canvasTxt.drawText(ctx, txt, content.left, content.top - content.fontSize, content.width, content.height); //drawText(ctx, text, x, y, width, height)
+    canvasTxt.drawText(ctx, txt, content.left, content.top, content.width, content.height); //drawText(ctx, text, x, y, width, height)
   };
 
 module.exports = loadText;

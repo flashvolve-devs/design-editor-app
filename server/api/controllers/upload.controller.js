@@ -9,10 +9,8 @@ const downloadFile = require('../helpers/downloadFont');
 
 module.exports = class UploadController {
 
-    static async upload (req, res) {
-        let data = req.file
-        console.log(data)
-        res.send('upload controller')
+    static async upload (_req, res) {
+        res.send('/pages/upload')
     }
 
     static async template (req, res) {

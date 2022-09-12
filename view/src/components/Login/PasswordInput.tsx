@@ -5,7 +5,7 @@ export default function PasswordInput() {
   const { password, setPassword, visible } = useContext(AppContext);
   return (
     <div>
-      <label htmlFor="password">
+      <label htmlFor="password" >
         <input
           id="password"
           data-testid="common_login__input-password"

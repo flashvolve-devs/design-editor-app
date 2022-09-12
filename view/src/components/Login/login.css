@@ -16,7 +16,7 @@
 }
 .login-items-container:hover{
     transform: scale(1.02);
-    box-shadow: 2px 2px 10px #657b8d ;
+    box-shadow: 2px 2px 10px #657b8d
 }
 .login-form {
     border: 2px solid #11a8ee;
@@ -36,18 +36,21 @@
     margin-bottom: 4px;
     font-size: 14px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: 0.8s;
+    border: none;
 }
 .login-form button:hover {
     background-color: #07e28e;
-    border: 3px solid #11a8ee;
     cursor: pointer;
 }
 /* input e-mail */
 .login-form div label input {
     text-align: center;
     transition: 0.2s;
+    border-radius: 5px;
 }
 .login-form div label input:hover{
+    box-shadow: 2px 2px 7px #657b8d;
     transform: scale(1.02);
 }
 /* password */
@@ -62,13 +65,13 @@
     align-items: center;
     justify-content: center;
 }
+/* button eye password */
 .button-visible{
-    /* border-radius: 25px; */
     background-color: #36343460;
     margin: 3px;
     border-radius: 25px;
-    border: 2px solid #11a8ee;
 }
+
 .input-format div label input{
     text-align: center;
 }
@@ -84,4 +87,16 @@ input {
     width: 260px;
     height: 24px;
     border: 2px solid #11a8ee;
+}
+/* message error */
+.message-error{
+    text-shadow: 1px 1px #181717;
+    font-size: larger;
+    border: none;
+    border-bottom: 2px solid #f80505;
+    padding: 4px;
+    color: #ff0202;
+}
+.message-error-hide{
+    min-height: 40px;
 }

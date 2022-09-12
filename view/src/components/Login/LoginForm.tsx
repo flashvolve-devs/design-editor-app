@@ -8,6 +8,7 @@ import { AppContext } from '../../contexts/AppContext';
 import getTokenData from '../../services/getTokenData';
 
 export default function LoginForm() {
+  const { invalidUser } = useContext(AppContext);
   const {
     visible, setVisible, email, setEmail,
     password, setPassword, setToken, setInvalidUser,
@@ -84,6 +85,16 @@ export default function LoginForm() {
       >
         Ainda não tenho conta
       </button>
+      {
+          invalidUser
+          ? <p
+            data-testid="common_login__element-invalid-email"
+            className='message-error'
+          >
+            Dados inválidos
+            </p>
+          : <p className="message-error-hide"></p>
+        }
     </form>
   );
 }

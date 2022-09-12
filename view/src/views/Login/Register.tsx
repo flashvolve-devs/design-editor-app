@@ -31,7 +31,7 @@ export default function RegisterPage() {
     if (newUser.message) {
       setInvalidRegister(true);
     } else {
-      navigate('../customer/products', { replace: true });
+      navigate('../editor', { replace: true });
     }
   }
 

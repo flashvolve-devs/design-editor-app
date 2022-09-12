@@ -116,7 +116,7 @@ export const SAMPLE_TEMPLATES = [
     metadata: {
       animated: false,
     },
-    preview: "https://storage.googleapis.com/flashvolve/canva-image-EapXGUByTG.jpeg",
+    preview: "https://storage.googleapis.com/flashvolve/loaded-image-xmcOqkMELS.jpeg",
   },
   {
     id: "0sXf_YEww2RXXCjdNkrWh",

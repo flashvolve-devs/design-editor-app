@@ -11,10 +11,13 @@ app.use((_req, res, next)=> {
 
 /* Routes */
 const imageRoute = require('./routes/image.route');
+const uploadRoute = require('./routes/upload.route');
 const loginRoute = require('./routes/login.route');
-const userRoute = require('./routes/image.route');
+const userRoute = require('./routes/user.route');
+
 
 app.use('/', imageRoute);
+app.use('/upload', uploadRoute);
 app.use('/login', loginRoute);
 app.use('/user', userRoute);
 

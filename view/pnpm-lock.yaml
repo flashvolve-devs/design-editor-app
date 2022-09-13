@@ -12,6 +12,7 @@ specifiers:
   '@types/node': ^17.0.35
   '@types/react': ^18.0.0
   '@types/react-dom': ^18.0.0
+  '@types/react-router-dom': ^5.3.3
   '@vitejs/plugin-react': ^2.0.0
   angular2: 2.0.0-beta.21
   axios: ^0.27.2
@@ -49,6 +50,7 @@ dependencies:
   '@layerhub-io/use-timer': 0.1.1_react@16.14.0
   '@reduxjs/toolkit': 1.8.5_5hnq3y2a3hn5fepn5kts24xvha
   '@types/node': 17.0.45
+  '@types/react-router-dom': 5.3.3
   angular2: 2.0.0-beta.21_wfeixer4xpy6wtog66fk3z635y
   axios: 0.27.2
   baseui: 12.1.2_yqcsovv54lm4pjecha77kndyhq
@@ -987,6 +989,10 @@ packages:
     resolution: {integrity: sha512-w8oigUCDjElRHRRrMvn/spybSMyX8MTkKA5Dv+tS1IE/TgmNZPqUYtvYBXGY8cieSE66gm+szeK+bnbxC2xHTQ==}
     dev: false
 
+  /@types/history/4.7.11:
+    resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
+    dev: false
+
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
     dependencies:
@@ -1017,6 +1023,21 @@ packages:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
       '@types/react': 18.0.19
+
+  /@types/react-router-dom/5.3.3:
+    resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.0.19
+      '@types/react-router': 5.1.19
+    dev: false
+
+  /@types/react-router/5.1.19:
+    resolution: {integrity: sha512-Fv/5kb2STAEMT3wHzdKQK2z8xKq38EDIGVrutYLmQVVLe+4orDFquU52hQrULnEHinMKv9FSA6lf9+uNT1ITtA==}
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.0.19
+    dev: false
 
   /@types/react-virtualized-auto-sizer/1.0.1:
     resolution: {integrity: sha512-GH8sAnBEM5GV9LTeiz56r4ZhMOUSrP43tAQNSRVxNexDjcNKLCEtnxusAItg1owFUFE6k0NslV26gqVClVvong==}

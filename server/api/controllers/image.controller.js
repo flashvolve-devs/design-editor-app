@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const sendToCloud = require('../middlewares/saveInCloud.service.js');
+const sendToCloud = require('../middlewares/saveInCloud.middleware');
 const initialFrame = require('../helpers/initialFrame');
 const loadImageUrl = require('../helpers/loadImage.js');
 const loadText = require('../helpers/loadText.js');
@@ -10,7 +10,7 @@ const downloadFile = require('../helpers/downloadFont');
 module.exports = class MainController {
 
     static async home(_req, res) {
-        res.send('=== Design Editor ===');
+        res.render('home');
     }
 
     static async downloadFonts(contentJSON) {
@@ -49,8 +49,9 @@ module.exports = class MainController {
         const data = req.body;
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
+        // console.log(data)
 
-        const contentJSON = data.content[0] == undefined ? data.scene.layers : data.content[0];
+        const contentJSON = data.content[0] === undefined ? data.layers[0] : data.content[0];
 
         await MainController.downloadFonts(contentJSON
             .filter(item => item.name == 'StaticText' || item.name == 'Group')

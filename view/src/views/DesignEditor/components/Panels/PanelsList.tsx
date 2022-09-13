@@ -56,6 +56,7 @@ function PanelListItem({ label, icon, activePanel, name }: any) {
         backgroundColor: name === activePanel ? theme.colors.white : theme.colors.primary100,
         display: "flex",
         alignItems: "center",
+        textAlign: "center",
         flexDirection: "column",
         justifyContent: "center",
         fontFamily: "Uber Move Text",
@@ -72,7 +73,7 @@ function PanelListItem({ label, icon, activePanel, name }: any) {
       }}
     >
       <Icon size={24} />
-      <div>{label}</div>
+      <div>{label === 'panels.panelsList.personaltemplates' ? 'My Templates' : label}</div>
     </Block>
   )
 }

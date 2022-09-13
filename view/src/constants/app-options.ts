@@ -1,5 +1,9 @@
 export const BASE_ITEMS = [
   {
+    id: "personaltemplates",
+    name: "PersonalTemplates",
+  },
+  {
     id: "templates",
     name: "Templates",
   },

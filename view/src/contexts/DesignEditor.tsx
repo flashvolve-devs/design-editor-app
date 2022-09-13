@@ -36,7 +36,7 @@ export const DesignEditorProvider = ({ children }: { children: React.ReactNode }
   const [scenes, setScenes] = React.useState<IDesign[]>([])
   const [currentScene, setCurrentScene] = React.useState<IDesign | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true)
-  const [editorType, setEditorType] = React.useState<DesignType>("NONE")
+  const [editorType, setEditorType] = React.useState<DesignType>("GRAPHIC")
   const [displayPlayback, setDisplayPlayback] = React.useState<boolean>(false)
   const [displayPreview, setDisplayPreview] = React.useState<boolean>(false)
 

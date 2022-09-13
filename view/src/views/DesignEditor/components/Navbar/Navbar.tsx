@@ -36,7 +36,6 @@ export default function () {
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
-    console.log(currentDesign.id)
 
     const updatedScenes = scenes.map((scn) => {
       if (scn.id === currentDesign.id) {
@@ -56,8 +55,12 @@ export default function () {
     if (toSave === 'save') {
       console.log(presentationTemplate)
       const urlImage = await ApiService(presentationTemplate)
+      console.log(presentationTemplate)
       console.log(urlImage)
+      //@ts-ignore
+      presentationTemplate["preview"] = urlImage
       SAMPLE_TEMPLATES.push(presentationTemplate)
+      console.log(SAMPLE_TEMPLATES)
     } else makeDownload(presentationTemplate)
   }
 

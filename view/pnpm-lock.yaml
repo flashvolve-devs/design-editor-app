@@ -15,7 +15,7 @@ specifiers:
   '@vitejs/plugin-react': ^2.0.0
   angular2: 2.0.0-beta.21
   axios: ^0.27.2
-  baseui: ^12.0.0
+  baseui: ^12.1.2
   es6-shim: ^0.35.6
   i18next: ^21.8.13
   install: ^0.13.0

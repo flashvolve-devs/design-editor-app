@@ -51,7 +51,7 @@ dependencies:
   '@types/node': 17.0.45
   angular2: 2.0.0-beta.21_wfeixer4xpy6wtog66fk3z635y
   axios: 0.27.2
-  baseui: 12.1.2_yqcsovv54lm4pjecha77kndyhq
+  baseui: 12.1.2
   es6-shim: 0.35.6
   i18next: 21.9.1
   install: 0.13.0

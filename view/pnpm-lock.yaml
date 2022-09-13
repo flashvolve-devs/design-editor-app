@@ -14,6 +14,7 @@ specifiers:
   '@vitejs/plugin-react': ^2.0.0
   axios: ^0.27.2
   baseui: ^12.0.0
+  crypto-js: ^4.1.1
   i18next: ^21.8.13
   install: ^0.13.0
   lodash: ^4.17.21
@@ -42,6 +43,7 @@ dependencies:
   '@types/node': 17.0.45
   axios: 0.27.2
   baseui: 12.0.0_vx6l3m7grhdjsdty3rfvukcune
+  crypto-js: 4.1.1
   i18next: 21.8.13
   install: 0.13.0
   lodash: 4.17.21
@@ -1274,6 +1276,10 @@ packages:
 
   /credit-card-type/8.3.0:
     resolution: {integrity: sha512-czfZUpQ7W9CDxZL4yFLb1kFtM/q2lTOY975hL2aO+DC8+GRNDVSXVCHXhVFZPxiUKmQCZbFP8vIhxx5TBQaThw==}
+    dev: false
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
     dev: false
 
   /css-in-js-utils/2.0.1:

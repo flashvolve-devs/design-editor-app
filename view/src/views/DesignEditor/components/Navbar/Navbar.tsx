@@ -36,6 +36,7 @@ export default function () {
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
+    console.log(currentDesign.id)
 
     const updatedScenes = scenes.map((scn) => {
       if (scn.id === currentDesign.id) {
@@ -209,14 +210,14 @@ export default function () {
   const handleImportTemplate = React.useCallback(
     async (data: any) => {
       let template
-      if (data.type === "GRAPHIC") {
+        if (data.type === "GRAPHIC") {
         template = await loadGraphicTemplate(data)
       } else if (data.type === "PRESENTATION") {
         template = await loadPresentationTemplate(data)
       } else if (data.type === "VIDEO") {
         template = await loadVideoTemplate(data)
       }
-      //   @ts-ignore
+        //@ts-ignore
       setScenes(template)
     },
     [editor]

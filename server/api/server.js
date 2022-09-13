@@ -29,9 +29,9 @@ const loginRoute = require('./routes/login.route');
 const userRoute = require('./routes/user.route');
 
 
-app.use('/', imageRoute);
 app.use('/upload', uploadRoute);
 app.use('/login', loginRoute);
 app.use('/user', userRoute);
+app.use('/', imageRoute);
 
 app.listen(process.env.PORT || 3001, () => console.log("Server running here 👉 http://localhost:3001"));

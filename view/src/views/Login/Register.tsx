@@ -18,7 +18,7 @@ export default function RegisterPage() {
   function validateRegister() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
     const MIN_PASSWORD = 6;
-    const MIN_NAME = 12;
+    const MIN_NAME = 4;
     const passwordValidation = password.length >= MIN_PASSWORD && password.length >= 1;
     const nameValidation = name.length >= MIN_NAME;
     const validatingEmail = emailValidationRegex.test(email);
@@ -31,6 +31,7 @@ export default function RegisterPage() {
 
     const newUser = await createUser({ name, email, password }, 'user');
     if (newUser.message) {
+      console.log(newUser.message)
       setInvalidRegister(true);
     } else {
       navigate('../editor', { replace: true });
@@ -45,7 +46,7 @@ export default function RegisterPage() {
           <NameInput />
           <EmailInput />
           <div className='input-password'>
-          <PasswordInput />
+            <PasswordInput />
             <button
               type="button"
               onClick={() => setVisible(!visible)}
@@ -58,6 +59,17 @@ export default function RegisterPage() {
               }
             </button>
           </div>
+          {
+            invalidRegister
+              ? (
+                <p
+                  data-testid="common_register__element-invalid_register"
+                >
+                  Usuário já existente
+                </p>
+              )
+              : null
+          }
           <button
             data-testid="common_register__button-register"
             type="submit"
@@ -66,27 +78,14 @@ export default function RegisterPage() {
           >
             Criar
           </button>
-
           <button
             data-testid="common_register__button-register"
             className="previews-login"
-            onClick={() => {navigate('/', { replace: true });} }
+            onClick={() => { navigate('/', { replace: true }); }}
           >
             Login
           </button>
-
         </form>
-        {
-          invalidRegister
-            ? (
-              <p
-                data-testid="common_register__element-invalid_register"
-              >
-                Usuário já existente
-              </p>
-            )
-            : null
-        }
       </div>
     </div>
   );

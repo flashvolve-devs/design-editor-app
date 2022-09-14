@@ -110,7 +110,7 @@ export default function () {
                 gridTemplateColumns: "1fr 1fr",
               }}
             >
-              {uploads !== [] && uploads.map((upload: string | any, index: number) => (
+              {uploads.map((upload: string | any, index: number) => (
                 <div
                   key={index + 1}
                   style={{

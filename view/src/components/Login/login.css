@@ -101,6 +101,12 @@ input {
     padding: 4px;
     color: #ff0202;
 }
+.login-button[disabled]{
+    margin: 1.5rem!important;
+    border-radius: 3px;
+    background: #ced2d160;
+    color: #312e2e;
+}
 .login-button{
     margin: 1.5rem!important;
     border-radius: 3px;

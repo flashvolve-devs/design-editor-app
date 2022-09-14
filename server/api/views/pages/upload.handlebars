@@ -3,16 +3,19 @@
     <h1>Create Image</h1>
     </div>
     <div class="form-content">
-        <form action="/template" method="POST" class="form-input-groups">
+        <form action="/upload/salvar" method="POST" class="form-input-groups">
         <div class="input-groups">
             <label for="text-image">Inserir texto</label>
-            <input type="text" id="textimage" name="textimage">
+            <input type="text" id="textimage" name="firstText">
+
+            <label for="text-image">Inserir texto</label>
+            <input type="text" id="textimage" name="secondText">
 
             <label for="width-image">width</label>
-            <input type="number" id="widthimage" name="inputWidth" style="color: black;">
+            <input type="number" id="widthimage" name="width" style="color: black;">
 
             <label for="height-image">height</label>
-            <input type="number" id="heightimage" name="inputHeight">
+            <input type="number" id="heightimage" name="height">
 
             <button type="submit" style="width: 60px; height: 30px; cursor: pointer; background-color:green"> Salvar </button>
 

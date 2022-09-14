@@ -43,7 +43,6 @@
     border: none;
 }
 .login-form button:hover {
-    background-color: #07e28e;
     cursor: pointer;
 }
 /* input e-mail */
@@ -105,7 +104,7 @@ input {
     margin: 1.5rem!important;
     border-radius: 3px;
     background: #ced2d160;
-    color: #312e2e;
+    color: #312e2e28;
 }
 .login-button{
     margin: 1.5rem!important;
@@ -119,6 +118,7 @@ input {
     background: none !important;
     border-radius: 3px;
 }
+/* ainda não tenho conta */
 .login-register-btn:hover{
     color: #a0f10a;
     border-bottom: 1px solid #a0f10a;

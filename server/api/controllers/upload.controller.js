@@ -81,7 +81,7 @@ module.exports = class UploadController {
 
         const contentJSON = data.content == undefined ? data.layers : data.content[0];
 
-        await MainController.downloadFonts(contentJSON
+        await UploadController.downloadFonts(contentJSON
             .filter(item => item.name == 'StaticText' || item.name == 'Group')
         ); //call method downloadFonts
 

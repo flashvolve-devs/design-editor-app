@@ -47,11 +47,11 @@ module.exports = class MainController {
 
     static async createImage(req, res) {
         const data = req.body;
-        console.log(data)
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
+        // console.log(data)
 
-        const contentJSON = data.content == undefined ? data.layers : data.content[0];
+        const contentJSON = data.content[0] === undefined ? data.layers[0] : data.content[0];
 
         await MainController.downloadFonts(contentJSON
             .filter(item => item.name == 'StaticText' || item.name == 'Group')

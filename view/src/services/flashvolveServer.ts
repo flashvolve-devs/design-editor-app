@@ -10,7 +10,7 @@ async function ApiService(_data: {
 }) {
     const config = {
         method: "POST",
-        url: "http://localhost:3001/image",
+        url: "http://localhost:3001/upload",
         // url: "https://design-editor-app-z22dtvdr6q-uc.a.run.app/image",
         headers: {
             "Content-Type": "application/json",
@@ -20,15 +20,18 @@ async function ApiService(_data: {
         data: _data,
     }
 
+    let result;
+
     await axios(config)
     .then(function (response) {
             console.log("oi")
-            console.log(JSON.stringify(response.data));
-            return response.data
+            result = response.data;
         })
         .catch(function (error) {
             console.log(error)
         })
+
+    return result;
 }
 
 export default ApiService

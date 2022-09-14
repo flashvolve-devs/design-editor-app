@@ -10,12 +10,12 @@ const downloadFile = require('../helpers/downloadFont');
 module.exports = class UploadController {
 
     static async upload (_req, res) {
-        res.send('/pages/upload')
+        res.render('pages/upload')
     }
 
     static async template (req, res) {
-        let width =  1200
-        let height = 580
+        let width =  parseFloat(req.body.width)
+        let height = parseFloat(req.body.height)
         const canvas = createCanvas(width, height)
         const context = canvas.getContext('2d')
         context.fillStyle = '#000'
@@ -24,10 +24,10 @@ module.exports = class UploadController {
         context.textAlign = 'center'
         context.textBaseline = 'top'
         context.fillStyle = '#0788eb'//cor
-        const text = req.body.textimage
-        const subText = 'flashvolve.com'//req.body.subTitle
+        const text = req.body.firstText
+        const subText = req.body.secondText
         const textWidth = context.measureText(text).width
-        context.fillRect(600 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120)
+        context.fillRect(600 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120, 'center')
         context.fillStyle = '#fff'//cor da fonte
         context.fillText(text, 600, 170)
         //context.fillStyle = '#fff'
@@ -37,6 +37,7 @@ module.exports = class UploadController {
         //fs.writeFileSync('./output.png', buffer)
         fs.writeFileSync('./public/images/output.png', buffer)
 
+        console.log('botao salvar')
         res.render('pages/upload')
     }
     

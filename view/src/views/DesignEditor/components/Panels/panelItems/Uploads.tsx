@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Block } from "baseui/block"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import Scrollable from "../../../../../components/Scrollable"
@@ -6,17 +6,17 @@ import { Button, SIZE } from "baseui/button"
 import DropZone from "../../../../../components/Dropzone"
 import { useAppDispatch } from "../../../../../store/store"
 import { setUploading, uploadFile } from "../../../../../store/slices/uploads/actions"
-import { useSelector } from "react-redux"
-import { selectUploading, selectUploads } from "../../../../../store/slices/uploads/selectors"
+// import { useSelector } from "react-redux"
+// import { selectUploading, selectUploads } from "../../../../../store/slices/uploads/selectors"
 import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 
 export default function () {
-  const [currentFile, setCurrentFile] = React.useState<any>(null)
+  // const [currentFile, setCurrentFile] = React.useState<any>(null)
   const inputFileRef = React.useRef<HTMLInputElement>(null)
-  const uploading = useSelector(selectUploading)
+  // const uploading = useSelector(selectUploading)
   // const uploads = useSelector(selectUploads)
-  const [uploads, setUploads] = useState([]);
+  const [uploads, setUploads] = useState<any>([]);
   const editor = useEditor()
   const dispatch = useAppDispatch()
   const setIsSidebarOpen = useSetIsSidebarOpen()
@@ -25,11 +25,12 @@ export default function () {
     const file = files[0]
     handleUploadFile(file)
     const reader = new FileReader()
-    console.log(reader.result)
     reader.addEventListener(
       "load",
       function () {
-        setCurrentFile(reader.result)
+        // setCurrentFile(reader.result)
+        uploads.push(reader.result)
+        setUploads([...uploads])
       },
       false
     )
@@ -47,7 +48,6 @@ export default function () {
           status: "IN_PROGRESS",
         })
       )
-      // console.log(file);
       // dispatch(uploadFile({ file: file }))
     } catch (err) {
       console.log({ err })
@@ -60,7 +60,6 @@ export default function () {
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleDropFiles(e.target.files!)
-    console.log(e.target.files)
   }
 
   const addImageToCanvas = (url: string) => {
@@ -111,10 +110,9 @@ export default function () {
                 gridTemplateColumns: "1fr 1fr",
               }}
             >
-              {uploading && <img width="100%" src={currentFile} alt="uploaded" />}
               {uploads !== [] && uploads.map((upload: string | any, index: number) => (
                 <div
-                  key={index}
+                  key={index + 1}
                   style={{
                     display: "flex",
                     alignItems: "center",

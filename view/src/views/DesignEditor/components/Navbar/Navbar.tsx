@@ -55,8 +55,12 @@ export default function () {
     if (toSave === 'save') {
       console.log(presentationTemplate)
       const urlImage = await ApiService(presentationTemplate)
+      console.log(presentationTemplate)
       console.log(urlImage)
+      //@ts-ignore
+      presentationTemplate["preview"] = urlImage
       SAMPLE_TEMPLATES.push(presentationTemplate)
+      console.log(SAMPLE_TEMPLATES)
     } else makeDownload(presentationTemplate)
   }
 
@@ -209,14 +213,14 @@ export default function () {
   const handleImportTemplate = React.useCallback(
     async (data: any) => {
       let template
-      if (data.type === "GRAPHIC") {
+        if (data.type === "GRAPHIC") {
         template = await loadGraphicTemplate(data)
       } else if (data.type === "PRESENTATION") {
         template = await loadPresentationTemplate(data)
       } else if (data.type === "VIDEO") {
         template = await loadVideoTemplate(data)
       }
-      //   @ts-ignore
+        //@ts-ignore
       setScenes(template)
     },
     [editor]

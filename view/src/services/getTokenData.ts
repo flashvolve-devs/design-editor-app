@@ -1,6 +1,6 @@
 export default async function getTokenData(token: any) {
   // const URL = 'http://localhost:3001/login/validate';
-  const URL = 'https://design-editor-app-z22dtvdr6q-uc.a.run.app/validate';
+  const URL = 'http://18.228.2.161:3001/validate';
 
   const request = await fetch(URL, {
     method: 'GET',

@@ -2,7 +2,7 @@ import CryptoJS from 'crypto-js';
 
 export default async function create(data: any, path: any) {
   // const URL = `http://localhost:3001/${path}`;
-  const URL = `https://design-editor-app-z22dtvdr6q-uc.a.run.app/${path}`;
+  const URL = `http://18.228.2.161:3001/${path}`;
 
   const md5Password = CryptoJS.MD5(data.password).toString();
 

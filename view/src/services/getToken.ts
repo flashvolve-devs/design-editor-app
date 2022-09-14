@@ -1,6 +1,6 @@
 export default async function getToken(data: any) {
   // const URL = 'http://localhost:3001/login';
-  const URL = 'https://design-editor-app-z22dtvdr6q-uc.a.run.app/login';
+  const URL = 'http://18.228.2.161:3001/login';
 
 
   const request = await fetch(URL, {

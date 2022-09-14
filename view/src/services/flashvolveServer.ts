@@ -11,7 +11,7 @@ async function ApiService(_data: {
     const config = {
         method: "POST",
         // url: "http://localhost:3001/upload",
-        url: "https://design-editor-app-z22dtvdr6q-uc.a.run.app/upload",
+        url: "http://18.228.2.161:3001/upload",
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",

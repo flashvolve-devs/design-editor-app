@@ -60,6 +60,8 @@ export default function () {
       //@ts-ignore
       presentationTemplate["preview"] = urlImage
       SAMPLE_TEMPLATES.push(presentationTemplate)
+      const psTemplates = SAMPLE_TEMPLATES
+      localStorage.setItem('personaltemplates', JSON.stringify(psTemplates))
       console.log(SAMPLE_TEMPLATES)
     } else makeDownload(presentationTemplate)
   }

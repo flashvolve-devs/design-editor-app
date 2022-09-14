@@ -14,16 +14,19 @@ import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 export default function () {
   // @ts-ignore
   const SAMPLE_TEMPLATES = localStorage.getItem('personaltemplates') ? JSON.parse(localStorage.getItem('personaltemplates')) : [];
+  // console.log(SAMPLE_TEMPLATES);
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const { setCurrentScene, currentScene } = useDesignEditorContext()
 
   const loadTemplate = React.useCallback(
     async (template: any) => {
-      console.log(template)
+      console.log('meu', template)
       if (editor) {
         const fonts: any[] = []
-        template.content.forEach((object: any) => {
+        console.log(template.content[0])
+        template.content[0].forEach((object: any) => {
+          console.log(object)
           if (object.type === "StaticText" || object.type === "DynamicText") {
             fonts.push({
               name: object.fontFamily,

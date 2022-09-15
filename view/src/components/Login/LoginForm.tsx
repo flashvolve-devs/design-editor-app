@@ -1,4 +1,4 @@
-import { FormEvent, useContext } from 'react';
+import { FormEvent, useContext, useEffect } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import EmailInput from '../../components/Login/EmailInput';
@@ -14,6 +14,10 @@ export default function LoginForm() {
   } = useContext(AppContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setInvalidUser(false);
+}, []); 
+
   function validateLogin() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
     const MIN_PASSWORD = 4;
@@ -23,31 +27,34 @@ export default function LoginForm() {
     return !inputValidation;
   }
 
-  // async function setProfileData(token: string) {
-  //   const userStorage = localStorage.getItem('user');
-  //   if (userStorage === null) {
-  //     try {
-  //       localStorage.setItem('user', JSON.stringify({ id, name, email, token }));
-  //       localStorage.setItem('isLogged', 'true');
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // }
+  async function setProfileData(data: any) {
+    const { token, user_id } = data.response;
+
+    const userStorage = localStorage.getItem('user');
+    if (!userStorage) {
+      try {
+        localStorage.setItem('user', JSON.stringify({ user_id, token }));
+        localStorage.setItem('isLogged', 'true');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
   async function onSubmitLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const token = await getToken({ email, password })
-    console.log(token)
+    const data = await getToken({ email, password })
+    const { user_id } = data.response;
 
-    if (token.status === 'success') {
-      setToken(token);
+    if (!data) {
+      setInvalidUser(true);
+    }
+    if (data.status === 'success') {
+      setToken(data);
       setEmail('');
       setPassword('');
-      // await setProfileData(token);
-      navigate('/editor', { replace: true });
-    } else {
-      setInvalidUser(true);
+      await setProfileData(data);
+      navigate(`/editor/${user_id}`, { replace: true });
     }
   }
 

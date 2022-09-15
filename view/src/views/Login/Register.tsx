@@ -17,7 +17,7 @@ export default function RegisterPage() {
 
   function validateRegister() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
-    const MIN_PASSWORD = 6;
+    const MIN_PASSWORD = 4;
     const MIN_NAME = 4;
     const passwordValidation = password.length >= MIN_PASSWORD && password.length >= 1;
     const nameValidation = name.length >= MIN_NAME;
@@ -26,15 +26,32 @@ export default function RegisterPage() {
     return !inputValidation;
   }
 
+  async function setProfileData(data: any) {
+    const { token, user_id } = data.response;
+
+    const userStorage = localStorage.getItem('user');
+    if (!userStorage) {
+      try {
+        localStorage.setItem('user', JSON.stringify({ user_id, token }));
+        localStorage.setItem('isLogged', 'true');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   async function onSubmitUser(e: any) {
     e.preventDefault();
 
     const newUser = await createUser({ name, email, password });
-    console.log(newUser);
+    setProfileData(newUser)
+    // @ts-ignore
+    const user = JSON.parse(localStorage.getItem('user'));
+    const { user_id } = user;
     if (newUser.message) {
       setInvalidRegister(newUser.message);
     } else {
-      navigate('../editor', { replace: true });
+      navigate(`../editor/${user_id}`, { replace: true });
     }
   }
 

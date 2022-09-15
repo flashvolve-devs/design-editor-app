@@ -16,7 +16,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     setInvalidUser(false);
-}, []); 
+  }, []);
 
   function validateLogin() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
@@ -44,12 +44,13 @@ export default function LoginForm() {
   async function onSubmitLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = await getToken({ email, password })
-    const { user_id } = data.response;
 
     if (!data) {
       setInvalidUser(true);
+      console.log(invalidUser)
     }
-    if (data.status === 'success') {
+    else if (data.status === 'success') {
+      const { user_id } = data.response;
       setToken(data);
       setEmail('');
       setPassword('');

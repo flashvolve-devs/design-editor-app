@@ -29,10 +29,10 @@ export default function RegisterPage() {
   async function onSubmitUser(e: any) {
     e.preventDefault();
 
-    const newUser = await createUser({ name, email, password }, 'user');
+    const newUser = await createUser({ name, email, password });
+    console.log(newUser);
     if (newUser.message) {
-      console.log(newUser.message)
-      setInvalidRegister(true);
+      setInvalidRegister(newUser.message);
     } else {
       navigate('../editor', { replace: true });
     }
@@ -65,7 +65,7 @@ export default function RegisterPage() {
                 <p
                   data-testid="common_register__element-invalid_register"
                 >
-                  Usuário já existente
+                  {invalidRegister}
                 </p>
               )
               : null

@@ -52,14 +52,14 @@ export default function LoginForm() {
   }
 
   return (
-    <form className="login-form" onSubmit={ (e) => onSubmitLogin(e) }>
+    <form className="login-form" onSubmit={(e) => onSubmitLogin(e)}>
       <div className="title-login"> <h1>Login</h1> </div>
       <EmailInput />
       <div className="input-format">
         <PasswordInput />
         <button
           type="button"
-          onClick={ () => setVisible(!visible) }
+          onClick={() => setVisible(!visible)}
           className="button-visible"
         >
           {
@@ -72,7 +72,7 @@ export default function LoginForm() {
       <button
         data-testid="common_login__button-login"
         type="submit"
-        disabled={ validateLogin() }
+        disabled={validateLogin()}
         className="login-button"
       >
         LOGIN
@@ -81,20 +81,20 @@ export default function LoginForm() {
         className="login-register-btn"
         data-testid="common_login__button-register"
         type="button"
-        onClick={ () => navigate('../register', { replace: false }) }
+        onClick={() => navigate('../register', { replace: false })}
       >
         Ainda não tenho conta
       </button>
       {
-          invalidUser
+        invalidUser
           ? <p
             data-testid="common_login__element-invalid-email"
             className='message-error'
           >
             Dados inválidos
-            </p>
+          </p>
           : <p className="message-error-hide"></p>
-        }
+      }
     </form>
   );
 }

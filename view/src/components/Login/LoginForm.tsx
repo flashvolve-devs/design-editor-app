@@ -5,7 +5,6 @@ import EmailInput from '../../components/Login/EmailInput';
 import PasswordInput from '../../components/Login/PasswordInput';
 import getToken from '../../services/getToken';
 import { AppContext } from '../../contexts/AppContext';
-import getTokenData from '../../services/getTokenData';
 
 export default function LoginForm() {
   const { invalidUser } = useContext(AppContext);
@@ -17,35 +16,35 @@ export default function LoginForm() {
 
   function validateLogin() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
-    const MIN_PASSWORD = 6;
+    const MIN_PASSWORD = 4;
     const validatingEmail = emailValidationRegex.test(email);
     const passwordValidation = password.length >= MIN_PASSWORD;
     const inputValidation = (validatingEmail && passwordValidation);
     return !inputValidation;
   }
 
-  async function setProfileData(token: string) {
-    const { id, name, role } = await getTokenData(token);
-    const userStorage = localStorage.getItem('user');
-    if (userStorage === null) {
-      try {
-        localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
-        localStorage.setItem('isLogged', 'true');
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
+  // async function setProfileData(token: string) {
+  //   const userStorage = localStorage.getItem('user');
+  //   if (userStorage === null) {
+  //     try {
+  //       localStorage.setItem('user', JSON.stringify({ id, name, email, token }));
+  //       localStorage.setItem('isLogged', 'true');
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // }
 
   async function onSubmitLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const token = await getToken({ email, password });
+    const token = await getToken({ email, password })
+    console.log(token)
 
-    if (typeof token === 'string') {
+    if (token.status === 'success') {
       setToken(token);
       setEmail('');
       setPassword('');
-      await setProfileData(token);
+      // await setProfileData(token);
       navigate('/editor', { replace: true });
     } else {
       setInvalidUser(true);

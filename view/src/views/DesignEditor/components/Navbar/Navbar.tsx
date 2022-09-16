@@ -16,7 +16,6 @@ import { loadVideoEditorAssets } from "../../../../utils/video"
 import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
 import { useNavigate } from 'react-router-dom';
 import saveJSON from "./saveJSON"
-import bubbleJson from "./saveJSON"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -37,8 +36,7 @@ export default function () {
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
-    const urlImage = (await editor.renderer.render(currentDesign)) as string
-    console.log(urlImage)
+    const base64 = (await editor.renderer.render(currentDesign)) as string
     const updatedScenes = scenes.map((scn) => {
       if (scn.id === currentDesign.id) {
         return currentDesign.layers
@@ -55,11 +53,10 @@ export default function () {
     }
 
     if (toSave === 'save') {
+      const urlImage = await saveJSON(presentationTemplate, base64)
       //@ts-ignore
-      presentationTemplate["preview"] = 'https://res.cloudinary.com/prime-arte/image/upload/v1658249537/cld-sample-5.jpg'
+      presentationTemplate["preview"] = urlImage
       SAMPLE_TEMPLATES.push(presentationTemplate)
-      await saveJSON(presentationTemplate)
-      console.log(SAMPLE_TEMPLATES)
     } else makeDownload(presentationTemplate)
   }
 

@@ -13,19 +13,15 @@ import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 
 export default function () {
   // @ts-ignore
-  // console.log(SAMPLE_TEMPLATES);
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const { setCurrentScene, currentScene } = useDesignEditorContext()
 
   const loadTemplate = React.useCallback(
     async (template: any) => {
-      console.log('meu', template)
       if (editor) {
         const fonts: any[] = []
-        console.log(template.content[0])
         template.content[0].forEach((object: any) => {
-          console.log(object)
           if (object.type === "StaticText" || object.type === "DynamicText") {
             fonts.push({
               name: object.fontFamily,

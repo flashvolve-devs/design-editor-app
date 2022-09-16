@@ -111,7 +111,6 @@ export default function () {
 
   const changePage = React.useCallback(
     async (page: any) => {
-      // console.log(page)
       setCurrentPreview("")
       if (editor) {
         const updatedTemplate = editor.design.exportToJSON()

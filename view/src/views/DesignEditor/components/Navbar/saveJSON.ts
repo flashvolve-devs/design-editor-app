@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import loadPreviewImage from './previewImage';
+import loadPreviewImage from './previewImage';
 
-export default async function (json: any) {
+export default async function (json: any, base64: string) {
   try {
 
     let jsonExport = json;
@@ -26,14 +26,14 @@ export default async function (json: any) {
       modifications: modifications
     }
 
-    // jsonExport.preview = await loadPreviewImage(jsonExport);
-    jsonExport.preview = 'https://res.cloudinary.com/prime-arte/image/upload/v1658249537/cld-sample-5.jpg';
+    const previewImage = await loadPreviewImage(base64);
+    jsonExport.preview = previewImage;
     
     let jsonString = JSON.stringify(jsonExport);
 
-    const { data } = await axios.post('https://dash.zapbrand.com.br/version-test/api/1.1/obj/primeStencil', { json_text: jsonString, requestbody_text: JSON.stringify(jsonRequestBody), id_text: jsonID }, { headers: { 'Content-Type': 'application/json' } });
+    await axios.post('https://dash.zapbrand.com.br/version-test/api/1.1/obj/primeStencil', { json_text: jsonString, requestbody_text: JSON.stringify(jsonRequestBody), id_text: jsonID }, { headers: { 'Content-Type': 'application/json' } });
 
-    return data;
+    return previewImage;
 
   } catch (error) {
     console.log('Deu ruim!');

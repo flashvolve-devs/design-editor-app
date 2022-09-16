@@ -49,7 +49,7 @@ export default function () {
       type: "GRAPHIC",
       name: currentDesign.name,
       frame: currentDesign.frame,
-      content: updatedScenes,
+      layers: updatedScenes[0],
     }
 
     if (toSave === 'save') {

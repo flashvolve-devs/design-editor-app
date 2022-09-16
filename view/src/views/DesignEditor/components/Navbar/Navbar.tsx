@@ -14,8 +14,8 @@ import { IDesign } from "@layerhub-io/types"
 import { loadTemplateFonts } from "../../../../utils/fonts"
 import { loadVideoEditorAssets } from "../../../../utils/video"
 import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
-import ApiService from "../../../../services/flashvolveServer"
 import { useNavigate } from 'react-router-dom';
+import saveJSON from "./saveJSON"
 import bubbleJson from "./saveJSON"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
@@ -37,8 +37,8 @@ export default function () {
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
-    const image = (await editor.renderer.render(currentDesign)) as string
-    console.log(image)
+    const urlImage = (await editor.renderer.render(currentDesign)) as string
+    console.log(urlImage)
     const updatedScenes = scenes.map((scn) => {
       if (scn.id === currentDesign.id) {
         return currentDesign.layers
@@ -55,15 +55,10 @@ export default function () {
     }
 
     if (toSave === 'save') {
-      console.log(presentationTemplate)
-      const urlImage = image
-      console.log(presentationTemplate)
-      console.log(urlImage)
       //@ts-ignore
-      presentationTemplate["preview"] = urlImage
+      presentationTemplate["preview"] = 'https://res.cloudinary.com/prime-arte/image/upload/v1658249537/cld-sample-5.jpg'
       SAMPLE_TEMPLATES.push(presentationTemplate)
-      const psTemplates = SAMPLE_TEMPLATES
-      localStorage.setItem('personaltemplates', JSON.stringify(psTemplates))
+      await saveJSON(presentationTemplate)
       console.log(SAMPLE_TEMPLATES)
     } else makeDownload(presentationTemplate)
   }

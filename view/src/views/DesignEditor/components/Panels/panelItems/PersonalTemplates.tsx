@@ -5,7 +5,7 @@ import { loadFonts } from "../../../../../utils/fonts"
 import Scrollable from "../../../../../components/Scrollable"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import { useStyletron } from "baseui"
-// import { SAMPLE_TEMPLATES } from "../../../../../constants/my-edits"
+import { SAMPLE_TEMPLATES } from "../../../../../constants/my-edits"
 import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 // import useEditorType from "../../../../../hooks/useEditorType"
@@ -13,7 +13,6 @@ import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 
 export default function () {
   // @ts-ignore
-  const SAMPLE_TEMPLATES = localStorage.getItem('personaltemplates') ? JSON.parse(localStorage.getItem('personaltemplates')) : [];
   // console.log(SAMPLE_TEMPLATES);
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()

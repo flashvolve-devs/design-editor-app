@@ -16,6 +16,7 @@ import { loadVideoEditorAssets } from "../../../../utils/video"
 import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
 import ApiService from "../../../../services/flashvolveServer"
 import { useNavigate } from 'react-router-dom';
+import bubbleJson from "./saveJSON"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -36,7 +37,8 @@ export default function () {
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
-
+    const image = (await editor.renderer.render(currentDesign)) as string
+    console.log(image)
     const updatedScenes = scenes.map((scn) => {
       if (scn.id === currentDesign.id) {
         return currentDesign.layers
@@ -54,7 +56,7 @@ export default function () {
 
     if (toSave === 'save') {
       console.log(presentationTemplate)
-      const urlImage = await ApiService(presentationTemplate)
+      const urlImage = image
       console.log(presentationTemplate)
       console.log(urlImage)
       //@ts-ignore

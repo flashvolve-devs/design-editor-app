@@ -85,7 +85,7 @@ function ImageItem({ preview, onClick }: { preview: any; onClick?: (option: any)
           opacity: 1,
         },
       })}
-    >#opa#
+    >
       <div
         className={css({
           backgroundImage: `linear-gradient(to bottom,

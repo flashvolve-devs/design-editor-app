@@ -1,5 +1,5 @@
 import { ILayer } from "@layerhub-io/types"
-
+import userDesigner from "./userDesign"
 export const SecondLevelMenus = ["FontFamily"]
 export const FirstLevelMenus = ["Background"]
 
@@ -11,7 +11,20 @@ export enum SubMenuType {
   EFFECTS = "Effects",
 }
 
-export const SAMPLE_TEMPLATES: any = []
+async function designersUser() {
+  let designers = await userDesigner.get();
+  let designersUserJson = [];
+  for (let i = 0; i < designers.response.results.length; i++) {
+    designersUserJson.push(JSON.parse(designers.response.results[i].json_text));
+  }
+
+  console.log(designers.response.results);
+  console.log(designersUserJson);
+
+  return designersUserJson;
+}
+
+export const SAMPLE_TEMPLATES: any = await designersUser();
 
 export const FONT_SIZES = [6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 120, 144, 192, 240]
 

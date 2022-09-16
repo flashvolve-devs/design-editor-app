@@ -11,6 +11,8 @@ export enum SubMenuType {
   EFFECTS = "Effects",
 }
 
+
+
 export const SAMPLE_TEMPLATES = [
   {
     id: "0sXf_YEww2RXXCjdNkrWh",

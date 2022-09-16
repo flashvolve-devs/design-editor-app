@@ -1,20 +1,21 @@
-import CryptoJS from 'crypto-js';
+import axios from 'axios';
 
-export default async function create(data: any, path: any) {
-  // const URL = `http://localhost:3001/${path}`;
-  const URL = `https://design-editor-app-z22dtvdr6q-uc.a.run.app/${path}`;
-
-  const md5Password = CryptoJS.MD5(data.password).toString();
-
-  const request = await fetch(URL, {
-    method: 'POST',
-    body: JSON.stringify({ ...data, password: md5Password }),
+export default async function create(data: any) {
+  const newData = { Nome: data.name, Email: data.email, Senha: data.password }
+  const config = {
+    method: 'post',
+    url: 'https://flashvolve.bubbleapps.io/version-test/api/1.1/wf/sign-up',
     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
+      'Content-Type': 'application/json'
     },
-  });
+    data: newData
+  };
 
-  const response = await request.json();
-
-  return response;
+  return axios(config)
+    .then(async function (response) {
+      return await response.data
+    })
+    .catch(function (error) {
+      return error.response.data
+    });
 }

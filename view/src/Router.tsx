@@ -9,7 +9,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/editor" element={<DesignEditor />} />
+        <Route path="/editor/:id" element={<DesignEditor />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>

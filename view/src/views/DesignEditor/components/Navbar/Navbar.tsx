@@ -14,8 +14,8 @@ import { IDesign } from "@layerhub-io/types"
 import { loadTemplateFonts } from "../../../../utils/fonts"
 import { loadVideoEditorAssets } from "../../../../utils/video"
 import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
-import ApiService from "../../../../services/flashvolveServer"
 import { useNavigate } from 'react-router-dom';
+import saveJSON from "./saveJSON"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -36,7 +36,7 @@ export default function () {
 
   const parseGraphicJSON = async (toSave? : string) => {
     const currentDesign = editor.design.exportToJSON()
-
+    const base64 = (await editor.renderer.render(currentDesign)) as string
     const updatedScenes = scenes.map((scn) => {
       if (scn.id === currentDesign.id) {
         return currentDesign.layers
@@ -53,16 +53,10 @@ export default function () {
     }
 
     if (toSave === 'save') {
-      console.log(presentationTemplate)
-      const urlImage = await ApiService(presentationTemplate)
-      console.log(presentationTemplate)
-      console.log(urlImage)
+      const urlImage = await saveJSON(presentationTemplate, base64)
       //@ts-ignore
       presentationTemplate["preview"] = urlImage
       SAMPLE_TEMPLATES.push(presentationTemplate)
-      const psTemplates = SAMPLE_TEMPLATES
-      localStorage.setItem('personaltemplates', JSON.stringify(psTemplates))
-      console.log(SAMPLE_TEMPLATES)
     } else makeDownload(presentationTemplate)
   }
 

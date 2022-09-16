@@ -1,17 +1,20 @@
+import axios from 'axios';
 export default async function getToken(data: any) {
-  // const URL = 'http://localhost:3001/login';
-  const URL = 'https://design-editor-app-z22dtvdr6q-uc.a.run.app/login';
-
-
-  const request = await fetch(URL, {
-    method: 'POST',
-    body: JSON.stringify(data),
+  const newData = { email: data.email, senha: data.password }
+  const config = {
+    method: 'post',
+    url: 'https://flashvolve.com/version-test/api/1.1/wf/sign-in',
     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
+      'Content-Type': 'application/json'
     },
-  });
+    data: newData
+  };
 
-  const response = await request.json();
-
-  return response;
+  return axios(config)
+    .then(async function (response) {
+      return response.data
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }

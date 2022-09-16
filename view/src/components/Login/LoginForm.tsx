@@ -1,11 +1,10 @@
-import { FormEvent, useContext } from 'react';
+import { FormEvent, useContext, useEffect } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import EmailInput from '../../components/Login/EmailInput';
 import PasswordInput from '../../components/Login/PasswordInput';
 import getToken from '../../services/getToken';
 import { AppContext } from '../../contexts/AppContext';
-import getTokenData from '../../services/getTokenData';
 
 export default function LoginForm() {
   const { invalidUser } = useContext(AppContext);
@@ -15,21 +14,26 @@ export default function LoginForm() {
   } = useContext(AppContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setInvalidUser(false);
+  }, []);
+
   function validateLogin() {
     const emailValidationRegex = /\S+@\S+\.\S+/;
-    const MIN_PASSWORD = 6;
+    const MIN_PASSWORD = 4;
     const validatingEmail = emailValidationRegex.test(email);
     const passwordValidation = password.length >= MIN_PASSWORD;
     const inputValidation = (validatingEmail && passwordValidation);
     return !inputValidation;
   }
 
-  async function setProfileData(token: string) {
-    const { id, name, role } = await getTokenData(token);
+  async function setProfileData(data: any) {
+    const { token, user_id } = data.response;
+
     const userStorage = localStorage.getItem('user');
-    if (userStorage === null) {
+    if (!userStorage) {
       try {
-        localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
+        localStorage.setItem('user', JSON.stringify({ user_id, token }));
         localStorage.setItem('isLogged', 'true');
       } catch (error) {
         console.log(error);
@@ -39,28 +43,31 @@ export default function LoginForm() {
 
   async function onSubmitLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const token = await getToken({ email, password });
+    const data = await getToken({ email, password })
 
-    if (typeof token === 'string') {
-      setToken(token);
+    if (!data) {
+      setInvalidUser(true);
+      console.log(invalidUser)
+    }
+    else if (data.status === 'success') {
+      const { user_id } = data.response;
+      setToken(data);
       setEmail('');
       setPassword('');
-      await setProfileData(token);
-      navigate('/editor', { replace: true });
-    } else {
-      setInvalidUser(true);
+      await setProfileData(data);
+      navigate(`/editor/${user_id}`, { replace: true });
     }
   }
 
   return (
-    <form className="login-form" onSubmit={ (e) => onSubmitLogin(e) }>
+    <form className="login-form" onSubmit={(e) => onSubmitLogin(e)}>
       <div className="title-login"> <h1>Login</h1> </div>
       <EmailInput />
       <div className="input-format">
         <PasswordInput />
         <button
           type="button"
-          onClick={ () => setVisible(!visible) }
+          onClick={() => setVisible(!visible)}
           className="button-visible"
         >
           {
@@ -73,7 +80,7 @@ export default function LoginForm() {
       <button
         data-testid="common_login__button-login"
         type="submit"
-        disabled={ validateLogin() }
+        disabled={validateLogin()}
         className="login-button"
       >
         LOGIN
@@ -82,20 +89,20 @@ export default function LoginForm() {
         className="login-register-btn"
         data-testid="common_login__button-register"
         type="button"
-        onClick={ () => navigate('../register', { replace: false }) }
+        onClick={() => navigate('../register', { replace: false })}
       >
         Ainda não tenho conta
       </button>
       {
-          invalidUser
+        invalidUser
           ? <p
             data-testid="common_login__element-invalid-email"
             className='message-error'
           >
             Dados inválidos
-            </p>
+          </p>
           : <p className="message-error-hide"></p>
-        }
+      }
     </form>
   );
 }

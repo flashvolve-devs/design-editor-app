@@ -15,7 +15,7 @@ import { loadTemplateFonts } from "../../../../utils/fonts"
 import { loadVideoEditorAssets } from "../../../../utils/video"
 import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
 import { useNavigate } from 'react-router-dom';
-import saveJSON from "./saveJSON"
+import saveJSON from "../../../../services/saveJSON"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",

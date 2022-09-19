@@ -5,7 +5,7 @@ import { loadFonts } from "../../../../../utils/fonts"
 import Scrollable from "../../../../../components/Scrollable"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import { useStyletron } from "baseui"
-// import { SAMPLE_TEMPLATES } from "../../../../../constants/my-edits"
+import { SAMPLE_TEMPLATES } from "../../../../../constants/my-edits"
 import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 // import useEditorType from "../../../../../hooks/useEditorType"
@@ -13,20 +13,16 @@ import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 
 export default function () {
   // @ts-ignore
-  const SAMPLE_TEMPLATES = localStorage.getItem('personaltemplates') ? JSON.parse(localStorage.getItem('personaltemplates')) : [];
-  // console.log(SAMPLE_TEMPLATES);
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const { setCurrentScene, currentScene } = useDesignEditorContext()
 
   const loadTemplate = React.useCallback(
     async (template: any) => {
-      console.log('meu', template)
       if (editor) {
+        console.log(template)
         const fonts: any[] = []
-        console.log(template.content[0])
-        template.content[0].forEach((object: any) => {
-          console.log(object)
+        template.layers.forEach((object: any) => {
           if (object.type === "StaticText" || object.type === "DynamicText") {
             fonts.push({
               name: object.fontFamily,

@@ -18,12 +18,9 @@ export default function () {
 
   const loadTemplate = React.useCallback(
     async (template: any) => {
-      console.log('dele', template);
       if (editor) {
         const fonts: any[] = []
-        console.log(template.layers)
         template.layers.forEach((object: any) => {
-          console.log(object)
           if (object.type === "StaticText" || object.type === "DynamicText") {
             fonts.push({
               name: object.fontFamily,

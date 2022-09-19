@@ -49,7 +49,6 @@ module.exports = class MainController {
         const data = req.body;
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
-        // console.log(data)
 
         const contentJSON = data.content[0] === undefined ? data.layers[0] : data.content[0];
 

@@ -1,21 +1,20 @@
 import axios from 'axios';
 
 export default async function (image: any) {
-    const dataConfig = JSON.stringify({
-        "base64": image
-    });
 
     const config = {
         method: 'post',
-        url: 'https://glitter-silken-tarantula.glitch.me/uploadGoogle',
+        url: 'https://flashvolve.bubbleapps.io/version-test/api/1.1/wf/base64',
         headers: {
             'Content-Type': 'application/json'
         },
-        timeout: 10000,
-        data: dataConfig
+        data: {
+            "image": image
+        }
     };
 
     const { data } = await axios(config);
 
-    return data.image_url
+    return data;
+
 };

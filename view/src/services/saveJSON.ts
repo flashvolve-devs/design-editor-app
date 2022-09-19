@@ -1,13 +1,13 @@
 import axios from 'axios';
 import loadPreviewImage from './previewImage';
 
-export default async function (json: any, base64: string) {
+export default async function (json: any, base64: string, userId: string) {
   try {
 
-    let jsonExport = json;
-    let jsonID = jsonExport.id;
+    const jsonExport = json;
+    const jsonID = jsonExport.id;
+    const modifications = [];
     let jsonContentFormat = jsonExport.content == undefined ? jsonExport.layers : jsonExport.content;
-    let modifications = [];
 
     jsonContentFormat = jsonContentFormat.filter((item: any) => item.name != 'Initial Frame' && item.name != 'StaticPath');
 
@@ -21,17 +21,21 @@ export default async function (json: any, base64: string) {
       modifications.push(item);
     }
 
-    let jsonRequestBody = {
+    const jsonRequestBody = {
       template: jsonID,
       modifications: modifications
     }
 
     const previewImage = await loadPreviewImage(base64);
     jsonExport.preview = previewImage;
-    
-    let jsonString = JSON.stringify(jsonExport);
 
-    await axios.post('https://dash.zapbrand.com.br/version-test/api/1.1/obj/primeStencil', { json_text: jsonString, requestbody_text: JSON.stringify(jsonRequestBody), id_text: jsonID }, { headers: { 'Content-Type': 'application/json' } });
+    const jsonString = JSON.stringify(jsonExport);
+
+    await axios.post(
+      'https://flashvolve.com/version-test/api/1.1/obj/Templates',
+      { json_text: jsonString, requestbody_text: JSON.stringify(jsonRequestBody), id_text: jsonID, user_user: userId },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
 
     return previewImage;
 

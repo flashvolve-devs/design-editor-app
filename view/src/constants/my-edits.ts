@@ -1,5 +1,5 @@
 import { ILayer } from "@layerhub-io/types"
-import userDesigner from "./userDesign"
+import userDesigner from "../services/userDesign"
 export const SecondLevelMenus = ["FontFamily"]
 export const FirstLevelMenus = ["Background"]
 
@@ -11,20 +11,22 @@ export enum SubMenuType {
   EFFECTS = "Effects",
 }
 
-async function designersUser() {
-  const designers = await userDesigner.get();
-  const designersUserJson = [];
-  for (let i = 0; i < designers.response.results.length; i++) {
-    designersUserJson.push(JSON.parse(designers.response.results[i].json_text));
+export async function designersUsers() {
+  const userStorage = localStorage.getItem('user')
+  if (userStorage) {
+    // @ts-ignore
+    const userId = JSON.parse(userStorage).user_id
+    const designers = await userDesigner.get(userId)
+    const designersUserJson = []
+    for (let i = 0; i < designers.response.results.length; i++) {
+      designersUserJson.push(JSON.parse(designers.response.results[i].json_text))
+    }
+  
+    return designersUserJson
   }
-
-  console.log(designers.response.results);
-  console.log(designersUserJson);
-
-  return designersUserJson;
 }
 
-export const SAMPLE_TEMPLATES: any = async () => designersUser();
+export const SAMPLE_TEMPLATES = await designersUsers() || []
 
 export const FONT_SIZES = [6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 120, 144, 192, 240]
 

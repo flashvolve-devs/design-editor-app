@@ -26,18 +26,25 @@ const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   alignItems: "center",
 }))
 
+// React.useEffect(() => {
+// }, [])
+
 export default function () {
   const { setDisplayPreview, setScenes } = useDesignEditorContext()
+  const [saveIsAble, setSaveIsAble] = React.useState<boolean>(false)
   const editorType = useEditorType()
   const scenes = useDesignEditorScenes()
   const editor = useEditor()
   const inputFileRef = React.useRef<HTMLInputElement>(null)
   const navigate = useNavigate();
-
-  const parseGraphicJSON = async (toSave? : string) => {
+  
+  const parseGraphicJSON = async (toSave?: string) => {
     const currentDesign = editor.design.exportToJSON()
     const base64 = (await editor.renderer.render(currentDesign)) as string
     const updatedScenes = scenes.map((scn) => {
+    
+    console.log(currentDesign)
+
       if (scn.id === currentDesign.id) {
         return currentDesign.layers
       }
@@ -53,14 +60,17 @@ export default function () {
     }
 
     if (toSave === 'save') {
-      const urlImage = await saveJSON(presentationTemplate, base64)
+      const userStorage = localStorage.getItem('user')
+      //@ts-ignore
+      const userId = JSON.parse(userStorage).user_id
+      const urlImage = await saveJSON(presentationTemplate, base64, userId)
       //@ts-ignore
       presentationTemplate["preview"] = urlImage
       SAMPLE_TEMPLATES.push(presentationTemplate)
     } else makeDownload(presentationTemplate)
   }
 
-  const parsePresentationJSON = (toSave? : string) => {
+  const parsePresentationJSON = (toSave?: string) => {
     const currentDesign = editor.design.exportToJSON()
 
     const updatedScenes = scenes.map((scn) => {
@@ -84,7 +94,7 @@ export default function () {
       content: updatedScenes,
     }
 
-    if(toSave === 'save') {
+    if (toSave === 'save') {
 
       SAMPLE_TEMPLATES.push(presentationTemplate)
     } else makeDownload(presentationTemplate)
@@ -209,14 +219,14 @@ export default function () {
   const handleImportTemplate = React.useCallback(
     async (data: any) => {
       let template
-        if (data.type === "GRAPHIC") {
+      if (data.type === "GRAPHIC") {
         template = await loadGraphicTemplate(data)
       } else if (data.type === "PRESENTATION") {
         template = await loadPresentationTemplate(data)
       } else if (data.type === "VIDEO") {
         template = await loadVideoTemplate(data)
       }
-        //@ts-ignore
+      //@ts-ignore
       setScenes(template)
     },
     [editor]
@@ -262,6 +272,7 @@ export default function () {
           <Button
             size="compact"
             onClick={saveTemplate}
+            disabled={saveIsAble}
             kind={KIND.tertiary}
             overrides={{
               StartEnhancer: {
@@ -317,7 +328,7 @@ export default function () {
           </Button>
           <Button
             size="compact"
-            onClick={() => { localStorage.clear(); navigate('/', { replace: true })}}
+            onClick={() => { localStorage.clear(); navigate('/', { replace: true }) }}
             kind={KIND.tertiary}
             overrides={{
               StartEnhancer: {

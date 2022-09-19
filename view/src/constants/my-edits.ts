@@ -21,12 +21,20 @@ export async function designersUsers() {
     for (let i = 0; i < designers.response.results.length; i++) {
       designersUserJson.push(JSON.parse(designers.response.results[i].json_text))
     }
-  
+
     return designersUserJson
   }
 }
 
-export const SAMPLE_TEMPLATES = await designersUsers() || []
+// export const SAMPLE_TEMPLATES = await designersUsers() || []
+export const SAMPLE_TEMPLATES = await (designersUsers()
+.then(async function (response) {
+    // @ts-ignore
+    return await response
+  })
+  .catch(function (error) {
+    return error.response.data
+  }) || [])
 
 export const FONT_SIZES = [6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 120, 144, 192, 240]
 

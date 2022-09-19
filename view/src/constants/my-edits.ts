@@ -12,8 +12,8 @@ export enum SubMenuType {
 }
 
 async function designersUser() {
-  let designers = await userDesigner.get();
-  let designersUserJson = [];
+  const designers = await userDesigner.get();
+  const designersUserJson = [];
   for (let i = 0; i < designers.response.results.length; i++) {
     designersUserJson.push(JSON.parse(designers.response.results[i].json_text));
   }
@@ -24,7 +24,7 @@ async function designersUser() {
   return designersUserJson;
 }
 
-export const SAMPLE_TEMPLATES: any = await designersUser();
+export const SAMPLE_TEMPLATES: any = async () => designersUser();
 
 export const FONT_SIZES = [6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 120, 144, 192, 240]
 

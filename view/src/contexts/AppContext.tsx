@@ -29,6 +29,8 @@ interface IAppContext {
     setInvalidUser: (option: boolean | any) => void | any;
     token: string | any;
     setToken: (option: boolean | any) => void | any;
+    personalTemplates: string | any;
+    setPersonalTemplates: (option: boolean | any) => void | any;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -58,6 +60,8 @@ export const AppContext = createContext<IAppContext>({
     setInvalidUser: () => {},
     token: '',
     setToken: () => {},
+    personalTemplates: [],
+    setPersonalTemplates: () => {},
 });
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
@@ -74,6 +78,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const [visible, setVisible] = useState();
     const [invalidUser, setInvalidUser] = useState(false);
     const [token, setToken] = useState('');
+    const [personalTemplates, setPersonalTemplates] = useState([]);
 
     const context = {
         isMobile,
@@ -101,7 +106,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         invalidUser,
         setInvalidUser,
         token,
-        setToken
+        setToken,
+        personalTemplates,
+        setPersonalTemplates
     };
     return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 }

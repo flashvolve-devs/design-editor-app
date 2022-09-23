@@ -1,29 +1,24 @@
 import React from "react"
+import { AppContext } from '../../../../../contexts/AppContext';
 import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
 import { loadFonts } from "../../../../../utils/fonts"
 import Scrollable from "../../../../../components/Scrollable"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import { useStyletron } from "baseui"
-import { designersUsers } from "../../../../../constants/my-edits"
-import { SAMPLE_TEMPLATES } from "../../../../../constants/my-edits"
+// import { PERSONAL_TEMPLATES } from "../../../../../constants/my-edits"
 import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
 import useDesignEditorContext from "../../../../../hooks/useDesignEditorContext"
 // import useEditorType from "../../../../../hooks/useEditorType"
 // import { loadVideoEditorAssets } from "../../../../../utils/video"
 
 export default function () {
+  const { personalTemplates } = React.useContext(AppContext);
   // @ts-ignore
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const { setCurrentScene, currentScene } = useDesignEditorContext()
-  const [users, setUsers] = React.useState<any[] | any>(!SAMPLE_TEMPLATES ? [] : SAMPLE_TEMPLATES)
-
-  React.useEffect(() => {
-    async () => {
-      setUsers(await designersUsers())
-    }
-  }, [])
+  const [users] = React.useState<any[] | any>(!personalTemplates ? [] : personalTemplates)
 
   const loadTemplate = React.useCallback(
     async (template: any) => {

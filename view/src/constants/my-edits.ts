@@ -26,8 +26,8 @@ export async function designersUsers() {
   }
 }
 
-export const SAMPLE_TEMPLATES = await designersUsers() || []
-// export const SAMPLE_TEMPLATES = (designersUsers()
+// export const PERSONAL_TEMPLATES = await designersUsers() || []
+// export const PERSONAL_TEMPLATES = (designersUsers()
 // .then(function (response) {
 //     // @ts-ignore
 //     return response.data

@@ -4,6 +4,7 @@ import { Theme } from "baseui/theme"
 import { Button, KIND } from "baseui/button"
 import Logo from "../../../../components/Icons/Logo"
 import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
+import { AppContext } from '../../../../contexts/AppContext';
 import Play from "../../../../components/Icons/Play"
 import { Block } from "baseui/block"
 import { useEditor } from "@layerhub-io/react"
@@ -13,9 +14,10 @@ import { nanoid } from "nanoid"
 import { IDesign } from "@layerhub-io/types"
 import { loadTemplateFonts } from "../../../../utils/fonts"
 import { loadVideoEditorAssets } from "../../../../utils/video"
-import { SAMPLE_TEMPLATES } from "../../../../constants/my-edits"
 import { useNavigate } from 'react-router-dom';
 import saveJSON from "../../../../services/saveJSON"
+import userDesigner from "../../../../services/userDesign"
+// import { PERSONAL_TEMPLATES } from "../../../../../constants/my-edits"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -26,24 +28,41 @@ const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   alignItems: "center",
 }))
 
-// React.useEffect(() => {
-// }, [])
-
 export default function () {
   const { setDisplayPreview, setScenes } = useDesignEditorContext()
+  const { personalTemplates, setPersonalTemplates } = React.useContext(AppContext);
   const [saveIsAble, setSaveIsAble] = React.useState<boolean>(false)
   const editorType = useEditorType()
   const scenes = useDesignEditorScenes()
   const editor = useEditor()
   const inputFileRef = React.useRef<HTMLInputElement>(null)
   const navigate = useNavigate();
-  
+
+  async function designersUsers() {
+    const userStorage = localStorage.getItem('user')
+    if (userStorage) {
+      // @ts-ignore
+      const userId = JSON.parse(userStorage).user_id
+      const designers = await userDesigner.get(userId)
+      const designersUserJson = []
+      for (let i = 0; i < designers.response.results.length; i++) {
+        designersUserJson.push(JSON.parse(designers.response.results[i].json_text))
+      }
+
+      setPersonalTemplates(designersUserJson)
+    }
+  }
+
+  React.useEffect(() => {
+      designersUsers()
+  }, [])
+
   const parseGraphicJSON = async (toSave?: string) => {
     const currentDesign = editor.design.exportToJSON()
     const base64 = (await editor.renderer.render(currentDesign)) as string
     const updatedScenes = scenes.map((scn) => {
-    
-    console.log(currentDesign)
+
+      console.log(currentDesign)
 
       if (scn.id === currentDesign.id) {
         return currentDesign.layers
@@ -66,7 +85,8 @@ export default function () {
       const urlImage = await saveJSON(presentationTemplate, base64, userId)
       //@ts-ignore
       presentationTemplate["preview"] = urlImage
-      SAMPLE_TEMPLATES.push(presentationTemplate)
+      console.log(personalTemplates)
+      personalTemplates.push(presentationTemplate)
     } else makeDownload(presentationTemplate)
   }
 
@@ -96,7 +116,7 @@ export default function () {
 
     if (toSave === 'save') {
 
-      SAMPLE_TEMPLATES.push(presentationTemplate)
+      personalTemplates.push(presentationTemplate)
     } else makeDownload(presentationTemplate)
   }
 

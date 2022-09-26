@@ -50,7 +50,7 @@ module.exports = class MainController {
         const canvasWidth = data.frame.width;
         const canvasHeight = data.frame.height;
 
-        const contentJSON = data.content[0] === undefined ? data.layers[0] : data.content[0];
+        const contentJSON = data.layers;
 
         await MainController.downloadFonts(contentJSON
             .filter(item => item.name == 'StaticText' || item.name == 'Group')

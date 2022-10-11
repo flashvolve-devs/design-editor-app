@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const saveInCloudinary = async (image) => {
+const saveInCloudinary = async (image, w, h) => {
     const data = JSON.stringify({
         "file": `${image}`,
         "api_key": "429282383232114",
@@ -16,13 +16,21 @@ const saveInCloudinary = async (image) => {
         data: data
     };
 
-    return axios(config)
+    const cloudinaryImage = await axios(config)
         .then(async function (response) {
             return await response.data.url;
         })
         .catch(function (error) {
             console.log(error);
         });
+
+    const cloudinaryImageFaceCenter = (cloudinaryImage.split('upload/')[0] + `upload/c_fill,g_face:center,h_${parseInt(h)},w_${parseInt(w)}/` + cloudinaryImage.split('upload/')[1]);
+
+    console.log(cloudinaryImageFaceCenter);
+
+    return cloudinaryImageFaceCenter;
 }
 
 module.exports = saveInCloudinary;
+
+//  const cloudnaryImage = await saveInCloudinary(content.src, width, heigth);

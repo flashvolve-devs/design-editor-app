@@ -1,11 +1,11 @@
 const { loadImage } = require('canvas');
-const saveInCloudinary = require('../middlewares/cloudinary.middleware');
 const loadImageUrl = async (ctx, content) => {
 
-  const cloudnaryImage = await saveInCloudinary(content.src);
-  const cloudnaryImageFaceCenter = (cloudnaryImage.split('upload/')[0] + 'upload/c_fill,g_face:center,h_500,w_500/' + cloudnaryImage.split('upload/')[1]);
-  const imageUrl = await loadImage(cloudnaryImageFaceCenter);
-  ctx.drawImage(imageUrl, content.left, content.top, content.width * content.scaleX, content.height * content.scaleY);
+  const width = content.width * content.scaleX;
+  const heigth = content.height * content.scaleY;
+
+  const imageUrl = await loadImage(content.src);
+  ctx.drawImage(imageUrl, content.left, content.top, width, heigth);
 
 };
 
